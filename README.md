@@ -12,43 +12,53 @@ author intended. I hope I made some justice to his work.
 
 This is the base code for the upcoming version 2 of the game.
 There is still work to be done:
-    * Plot:
+
+    * Plot
         * Add a story
         * Work in the prose (descriptions of rooms, enemies, objects, etc)
         * Make some things ambiguous so the player can fill the blanks with his imagination
-    * Game Flow:
+        
+    * Game Flow
         * Make the game feel more like old Interactive Fiction games
         * Add a sleep() between text lines so one is not flooded with text
         * A "grab the left behind item in the room" function is missing
         * The "view map" should show only the visited rooms
-    * Map:
+        
+    * Map
         * The layout of the rooms
         * The placement of enemies
         * The placement of items
         * Adding puzzles and little notes
         * Maybe adding another "floor" in the dungeon
-    * Rooms:
+        
+    * Rooms
         * Insert the data in a json file
         * Add more data in the dictionaries 
         * Reduce all the room scripts to only one
-    * Player:
+        
+    * Player
         * Add some classes (ej. classic ones like warrior, cleric, ranger)
         * Add at least one stat (damage) and rework the others
         * Make the sanity slipping more dangerous
         * Rework the spells and physical attacks
-    * Enemies:
+        
+    * Enemies
         * Check their stats and attacks
         * Make the miniboss feel more like so
         * Insert the data in a json file
+        
     * Looting
         * Make the enemies drop more varied loot and adjust chances
-    * Inventory:
+        
+    * Inventory
         * Check what could possibly be changed
-    * Items:
+        
+    * Items
         * Add new items
         * Rework existing items (their values, descriptions, etc.)
         * Insert the data in a json file
-    * Balance:
+        
+    * Balance
         * Check the combat balance between player and enemies
         * Make the final battle more long and dangerous (aka more epic)
      
