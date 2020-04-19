@@ -19,10 +19,10 @@ class Inventory:
     def use_item(self, item, player):
         if item == "Health Potion":
             self.drop_item(item)
-            player.gain_health(items.health_potion['healing'], player)
+            player.gain_health(items.potion['health_potion']['healing'], player)
         if item == "Mana Potion":
             self.drop_item(item)
-            mana_fluctuation(player, items.mana_potion['mana_recover'])
+            mana_fluctuation(player, items.potion['mana_potion']['mana_recover'])
 
     def drop_item(self, item):
         self.backpack[item][1] -= 1
@@ -132,7 +132,7 @@ def pick_key(player, item):
 def looting_enemy(enemy):
     drop = randrange(enemy.drop_chance)
     if drop >= 3:
-        health_potion = items.Potion(items.health_potion)
+        health_potion = items.Potion(items.potion['health_potion'])
         print(Fore.GREEN + "The " + enemy.name + " drops a health potion!")
         INVENTORY.add_item(health_potion)
     if drop < 3:
