@@ -118,7 +118,7 @@ def perform_action(player, room):
 
         # View game map
         if action == "V":
-            print(Fore.YELLOW + "You are in room " + str(room.number))
+            print(Fore.YELLOW + "You are in room " + str(room.number['id']))
             print(tabulate(GAME_MAP, tablefmt="fancy_grid"))
             print(Fore.LIGHTWHITE_EX + """
               N
@@ -135,7 +135,7 @@ def calculate_score(player):
     negatives = player.damage_taken + player.sanity_lost
     score = positives - negatives
 
-    print(Fore.YELLOW + "You did " + str(player.damage_done) + " points of damage!")
+    print("\n" + Fore.YELLOW + "You did " + str(player.damage_done) + " points of damage!")
     print(Fore.YELLOW + "You healed for " + str(player.amount_healed) + " points!")
     print(Fore.RED + "You took " + str(player.damage_taken) + " points of damage!")
     print(Fore.RED + "You lost " + str(player.sanity_lost) + " points of sanity!")

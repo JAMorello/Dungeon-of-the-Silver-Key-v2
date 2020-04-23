@@ -184,7 +184,7 @@ def sanity_fluctuation(player, amount):
     if player.sanity < 0:
         gamefunctions.game_over(player, sanity_drain=True)
     print(Fore.GREEN + "Your sanity is " + str(player.sanity))
-    change_score(player, points=amount, sanity_lost=True)
+    change_score(player, points=-amount, sanity_lost=True)
 
 
 def mana_fluctuation(player, amount):
