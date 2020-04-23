@@ -1,0 +1,53 @@
+Gaming Culture: What ever happened with Text Adventure Games ? (Interactive Fiction)
+https://www.youtube.com/watch?v=EpR4Txswh6E
+
+GET LAMP Documentary
+https://www.youtube.com/watch?v=LRhbcDzbGSU
+INFOCOM Documentary
+https://www.youtube.com/watch?v=OXNLWy7rwH4
+Infocom IF game collection
+https://www.youtube.com/watch?v=um-dkhpc8QI
+
+Felicity Banks on IF
+https://www.youtube.com/watch?v=6F_TwFD-VPs
+
+TODO:
+https://www.youtube.com/watch?v=8CDePunJlck
+
+Inform 7 Tutorial
+https://www.youtube.com/watch?v=bTdoFHTxQRI
+
+Designing Narrative Choice
+https://www.youtube.com/watch?v=Gdt5zCdXoSc
+
+Advanced Python Text Adventure
+https://www.youtube.com/watch?v=VxhZZHnig8U
+
+Making a Text Adventure Parser
+https://www.youtube.com/watch?v=II3O1CJA-x8
+
+How World-Building Works
+https://www.youtube.com/watch?v=OfULqc6xHmE
+
+The past, present and future of IF
+https://www.youtube.com/watch?v=bx5ZLGBZAWs
+
+Game development with Twine 2 and Harlowe 2
+https://www.youtube.com/watch?v=YDUU5yZq4og
+
+https://www.youtube.com/watch?v=EXW1ts6tZh4
+What techniques can be harvested:
+* Poetry:
+	Prose
+	Comunicate world character story
+	Encourage the player to fill in blanks for themselves
+* Ambiguity
+	Byproduct of the medium
+	Imagination has to fill details - Interpretation, draw their own conclusions - Meaning
+	Omite some of the details deliberately
+	What to leave out o leave something unclear
+	Not at worldbuilding level but at narrative one
+* Complicity
+	Feeling of ownership of the plot
+	Actual choices, actually affect the narrative
+	
