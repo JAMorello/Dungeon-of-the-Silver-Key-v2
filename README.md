@@ -31,9 +31,9 @@ There is still work to be done:
         - [ ] Maybe adding another "floor" in the dungeon
         
     * Rooms
-        - [ ] Insert the data in a json file
+        - [x] Insert the data in a json file
         - [ ] Add more data in the dictionaries 
-        - [ ] Reduce all the room scripts to only one
+        - [x] Reduce all the room scripts to only one
         
     * Player
         - [ ] Add some classes (ej. classic ones like warrior, cleric, ranger)
