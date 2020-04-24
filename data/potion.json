@@ -1,0 +1,18 @@
+{
+    "health_potion":{
+        "name":"Health Potion",
+        "description":"a red-hued restorative brew mixed by a skilled alchemist.",
+        "found_object":"You see a little bottle with some liquid inside.",
+        "grab_object":"You grab the potion.",
+        "healing":35,
+        "mana_recover":0
+    },
+    "mana_potion":{
+        "name":"Mana Potion",
+        "description":"a deep blue potion in an ornate bottle. This must've belonged to a mage at some point.",
+        "found_object":"You see a little bottle with some liquid inside.",
+        "grab_object":"You grab the potion.",
+        "healing":0,
+        "mana_recover":45
+    }
+}

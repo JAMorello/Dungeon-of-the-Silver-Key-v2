@@ -1,0 +1,16 @@
+{
+    "silver_key":{
+        "name":"Silver Key",
+        "description":"a large, ornate silver key decorated with strange sigils. On the bit, the an inscription reads\n\"Randolph C.\"...A previous owner, perhaps?",
+        "found_object":"You approach the pedestal, small flecks of cosmic energy seem to radiate off of the key.",
+        "grab_object":"You pick up the key.",
+        "stat_boost":40
+    },
+    "sun_talisman":{
+        "name":"Sun Talisman",
+        "description":"a small talisman depicting the sun.\nIt's craftsmanship is crude, but it fills you with a sense of vigor.",
+        "found_object":"You see a curious talisman within the jaws of the Horror.",
+        "grab_object":"You reach into the creature's mouth and withdraw the talisman.",
+        "stat_boost":15
+    }
+}
