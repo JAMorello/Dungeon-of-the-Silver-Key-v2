@@ -44,7 +44,7 @@ There is still work to be done:
     * Enemies
         - [ ] Check their stats and attacks
         - [ ] Make the miniboss feel more like so
-        - [ ] Insert the data in a json file
+        - [x] Insert the data in a json file
         
     * Looting
         - [ ] Make the enemies drop more varied loot and adjust chances
@@ -55,7 +55,7 @@ There is still work to be done:
     * Items
         - [ ] Add new items
         - [ ] Rework existing items (their values, descriptions, etc.)
-        - [ ] Insert the data in a json file
+        - [x] Insert the data in a json file
         
     * Balance
         - [ ] Check the combat balance between player and enemies
