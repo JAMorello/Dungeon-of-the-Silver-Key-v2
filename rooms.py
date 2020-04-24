@@ -20,7 +20,11 @@ from combat import start_combat
 # | 5 | 10| 15 | 20 | 25 |
 # -----------------------
 # Important rooms: 3 (Miniboss), 5 (Miniboss), 7 (Miniboss), 13 (START), 15 (Key Item), 21 (Miniboss), 23 (Miniboss)
+# Room 5 'ornate_tome'  Room 21 'cursed_tome' Room 7 'ancient_scroll' Room 23 'ancient_spellbook'
+# Rooms 4, 12, 18, 25 'health_potion' Rooms 1, 10 'mana_potion'
+# Room 15 'silver_key' Room 3 'sun_talisman'
 
+# Load all the rooms data
 with open('rooms.json', 'r') as file:
     rooms = json.load(file)
 
