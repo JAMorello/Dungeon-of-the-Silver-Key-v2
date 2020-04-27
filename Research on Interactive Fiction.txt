@@ -1,12 +1,14 @@
-Gaming Culture: What ever happened with Text Adventure Games ? (Interactive Fiction)
+#### Gaming Culture: What ever happened with Text Adventure Games ? (Interactive Fiction)
 https://www.youtube.com/watch?v=EpR4Txswh6E
 
-GET LAMP Documentary
+#### GET LAMP Documentary
 https://www.youtube.com/watch?v=LRhbcDzbGSU
-INFOCOM Documentary
+#### INFOCOM Documentary
 https://www.youtube.com/watch?v=OXNLWy7rwH4
-Infocom IF game collection
+#### Infocom IF game collection
 https://www.youtube.com/watch?v=um-dkhpc8QI
+
+=====================================================
 
 Felicity Banks on IF
 https://www.youtube.com/watch?v=6F_TwFD-VPs
@@ -23,8 +25,54 @@ https://www.youtube.com/watch?v=Gdt5zCdXoSc
 Advanced Python Text Adventure
 https://www.youtube.com/watch?v=VxhZZHnig8U
 
-Making a Text Adventure Parser
-https://www.youtube.com/watch?v=II3O1CJA-x8
+=====================================================
+
+#### MAKING A TEXT ADVENTURE PARSER
+#### https://www.youtube.com/watch?v=II3O1CJA-x8
+
+Check:
+"creating interactive fiction with Inform 7"
+Hartnell "Creating adventure games on your computer"
+"The Z-machine standars document"
+
+the thing that makes a text adventure stand out or fall flat on its face
+is the quality of the parser
+
+Rooms/Objects have attributes: id, holder, name, description id, n, s, e, w , weight
+	: portable, container, supporter, emitting light, being worn, openable
+
+SENTENCE:
+Verb / Direct Object / Preposition / Indirect Object => Subroutine (direct, default, or "dont understand")
+
+TABLES:
+
+Articles: A, AN, THE
+[For removing whitespace from the input]
+Prepositions: IN, ON, UNDER, OVER, AT, WITH
+[Flags used to chop up the sentence] [left: direct object; right: indirect object]
+Dictionary: OLD, RUSTY, IRON, SWORD. BOX, STRANGE
+[List of all the words that the game understands]
+Verbs: 0 GET, 0 TAKE, 0 PICK UP, 1 LOOK AT, 2 EXAMINE, 2 INSPECT, 3 X, 4 LOOK
+[same ID, synonims]
+
+- Mapt the words in the dictionary to the object table
+- Jump tables (to map user input to subroutines)
+- String tables (for names, descriptions, messages)
+
+PARSING:
+
+- Clean up input (uppercase, remove articles)
+- Identify parts of speech (Ver, DO, DI)
+- Verify the words entered are in the game´s dictionary
+- Try to map the words to objects
+- Map the user input into to a subroutine, if not execute the default subroutine for that verb
+
+DESAMBIGUATION:
+When searching through the tables, score each object and pick the one with the highest score
+If two or more objects have the same score, prompt the user to be more specifics
+If a word doesn´t map to an object, set its score to 0
+
+=====================================================
 
 How World-Building Works
 https://www.youtube.com/watch?v=OfULqc6xHmE
@@ -35,7 +83,11 @@ https://www.youtube.com/watch?v=bx5ZLGBZAWs
 Game development with Twine 2 and Harlowe 2
 https://www.youtube.com/watch?v=YDUU5yZq4og
 
-https://www.youtube.com/watch?v=EXW1ts6tZh4
+=====================================================
+
+#### HARVESTING INTERACTIVE FICTION
+#### https://www.youtube.com/watch?v=EXW1ts6tZh4
+
 What techniques can be harvested:
 * Poetry:
 	Prose
