@@ -8,11 +8,11 @@ from time import sleep
 from inventory import INVENTORY
 from player import Player
 
-GAME_MAP = [[1, 6, 11, 16, 21],
-            [2, 7, 12, 17, 22],
-            [3, 8, 13, 18, 23],
-            [4, 9, 14, 19, 24],
-            [5, 10, 15, 20, 25]]
+GAME_MAP = [[" ? ", " ? ", " ? ", " ? ", " ? "],
+            [" ? ", " ? ", " ? ", " ? ", " ? "],
+            [" ? ", " ? ", " ? ", " ? ", " ? "],
+            [" ? ", " ? ", " ? ", " ? ", " ? "],
+            [" ? ", " ? ", " ? ", " ? ", " ? "]]
 
 
 def display_title():
@@ -99,10 +99,14 @@ def enter_dungeon():
 def perform_action(player, room):
     """  Essential to game operation. This function allows the player to inspect inventory, use items, and view the map
     outside of combat"""
+
+    # Update the game map
+    GAME_MAP[(room.number['id'] % 5) - 1][room.number['id'] // 5] = str(room.number['id'])
+
     done = False
     while not done:
-        action = input(Fore.WHITE + "[I]nspect inventory, [U]se item, [E]xamine room, [V]iew map, or [C]ontinue?: ")\
-                 .upper()
+        action = input(Fore.WHITE + "[I]nspect inventory, [U]se item, [E]xamine room, [G]rab item, [V]iew map, "
+                                    "or [C]ontinue?: ").upper()
 
         # Inspect items in inventory
         if action == "I":
@@ -115,6 +119,13 @@ def perform_action(player, room):
         # Examine the room (shows the room´s description and his contents)
         if action == "E":
             room.location_check()
+
+        # Grab the left behind item in the room
+        if action == "G":
+            if not room.contents['taken']:
+                room.create_and_pickup_item(player)
+            else:
+                print("There isn´t any item here")
 
         # View game map
         if action == "V":
@@ -194,5 +205,5 @@ def victory(player):
         print(Fore.WHITE + "Your vision fades to black... when you awake, you stand at the entrance to the dungeon.\n"
                            "The walls, once filled with the names of those who challenged the dungeon, are now clear,\n"
                            "save for one name... """ + Fore.YELLOW + player.username + "\n\n" +
-                           Fore.BLUE + "[[END OF THE GAME]]")
+              Fore.BLUE + "[[END OF THE GAME]]")
         exit()

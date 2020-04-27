@@ -127,7 +127,6 @@ def room_script(player, room):
     else:
         # Returning to room
         print(Fore.WHITE + "This room is the same as when you left it.")
-        room.create_and_pickup_item(player)
 
 
 def room_twentysix_script(player):
