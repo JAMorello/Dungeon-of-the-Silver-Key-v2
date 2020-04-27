@@ -20,8 +20,8 @@ There is still work to be done:
     * Game Flow
         - [ ] Make the game feel more like old Interactive Fiction games
         - [ ] Add a sleep() between text lines so one is not flooded with text
-        - [ ] A "grab the left behind item in the room" function is missing
-        - [ ] The "view map" should show only the visited rooms
+        - [x] A "grab the left behind item in the room" function is missing
+        - [x] The "view map" should show only the visited rooms
         
     * Map
         - [ ] The layout of the rooms
@@ -37,7 +37,7 @@ There is still work to be done:
         
     * Player
         - [ ] Add some classes (ej. classic ones like warrior, cleric, ranger)
-        - [ ] Add at least one stat (damage) and rework the others
+        - [ ] Add at least one stat (ej. damage) and rework the others
         - [ ] Make the sanity slipping more dangerous
         - [ ] Rework the spells and physical attacks
         
