@@ -10,11 +10,69 @@ https://www.youtube.com/watch?v=um-dkhpc8QI
 
 =====================================================
 
-Felicity Banks on IF
-https://www.youtube.com/watch?v=6F_TwFD-VPs
+####Felicity Banks on IF
+####https://www.youtube.com/watch?v=6F_TwFD-VPs
 
-TODO:
-https://www.youtube.com/watch?v=8CDePunJlck
+STATISTICS:
+
+Polar-correlated stats instead of only one. E.g.:
+Sylish/Serious
+Intimidating/Relaxed
+Drunk/Sober
+Liar/Trusthful
+
+CHOICES:
+
+Based on Skills and based on "why"
+Makes differents posibilities, takes time deciding
+%85 positives ends?
+
+STORY:
+
+Use 2nd person view
+
+=====================================================
+
+####A Text Adventure in Python
+####https://www.youtube.com/watch?v=8CDePunJlck
+
+Necessities:
+- Command prompt ("talk" to the game, tell it want we want to do)
+- Locations to visit
+- Game file(s) describing our world (persistent)
+- Puzzles, items, characters, etc.
+
+Room class:
+- Needs an id, name, description
+- List of connected rooms
+- List of items in the room
+- List of NPCs in the room
+- Persistent rooms with json module:
+	- Allows "serializing" our rooms
+	- Hand-editable
+	- Expandable via adding fields
+
+Text Wrapping: textwrap
+- Automagically handles our wrapping needs
+
+Data Files: 
+* sqlite3 module
+	- Simple SQL database
+	- Store the entire game in a single file
+* tempfile module:
+	- Make a temporary, working copy of the game
+* shutil module
+	- For copying the clean game file to a temp file
+	- For creating our saves
+
+More:
+* curses module:
+	- Status bar
+
+Check:
+https://github.com/ArmstrongJ/robotadventure
+
+=====================================================
 
 Inform 7 Tutorial
 https://www.youtube.com/watch?v=bTdoFHTxQRI
