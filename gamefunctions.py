@@ -100,9 +100,6 @@ def perform_action(player, room):
     """  Essential to game operation. This function allows the player to inspect inventory, use items, and view the map
     outside of combat"""
 
-    # Update the game map
-    GAME_MAP[(room.number['id'] % 5) - 1][room.number['id'] // 5] = str(room.number['id'])
-
     done = False
     while not done:
         action = input(Fore.WHITE + "[I]nspect inventory, [U]se item, [E]xamine room, [G]rab item, [V]iew map, "

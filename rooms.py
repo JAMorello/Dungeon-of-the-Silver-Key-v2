@@ -3,7 +3,7 @@ from time import sleep
 import json
 import items
 import enemies
-from gamefunctions import perform_action, victory
+from gamefunctions import perform_action, victory, GAME_MAP
 from inventory import INVENTORY, pickup_item, looting_enemy
 from combat import start_combat
 
@@ -30,11 +30,12 @@ with open('rooms.json', 'r') as file:
 
 
 def trigger_room(player):
-    """ Essential to game operation. This function determines the player location and executes code for that location
-    accordingly. """
+    """ This function determines the player location and executes code for that location accordingly. """
     while True:
+
         room = Room(rooms[player.location])
         room_script(player, room)
+        GAME_MAP[(room.number['id'] % 5) - 1][room.number['id'] // 5] = str(room.number['id'])  # Update the game map
         perform_action(player, room)
         if "Silver Key" not in INVENTORY.backpack:
             room.available_directions()
@@ -44,7 +45,7 @@ def trigger_room(player):
 
 
 def travel_to_room(player, room):
-    """ Essential to game operation. This function changes the rooms: the players travels from one room to another. """
+    """ This function changes the rooms: the players travels from one room to another. """
     while True:
         movement_choice = input(Fore.WHITE + "Choose a door: ").lower()
         if movement_choice in ['n', 's', 'e', 'w']:
