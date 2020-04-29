@@ -7,108 +7,87 @@ with open('data/parser.json', 'r') as file:
 
 
 def get_unknown_cmd():
-    return choice(parser_data['UNKNOWN_CMD_RESPONSE'])
+    print(choice(parser_data['UNKNOWN_CMD_RESPONSE']))
 
 
-def remove_prepositions(sentence):
-    words = sentence.split()
+def remove_prepositions(list_words):
     result = list()
-    for word in words:
+    for word in list_words:
         if word not in parser_data['PREPOSITIONS']:
             result.append(word)
     return result
 
 
-def parse_sentence(sentence):
-    """Parses the sentence and returns a verb and the two objects (if applicable)"""
-    elements = remove_prepositions(sentence)
-    verb = elements[0]
-    direct_object = None
-    indirect_object = None
-    elements = elements[1:]
-
-    if len(elements) >= 1:
-        direct_object = elements[0]
-
-    if len(elements) >= 2:
-        indirect_object = elements[1]
-
-    return verb, direct_object, indirect_object
+def check_synonyms(list_words):
+    true_words = list()
+    for item in list_words:
+        for key in parser_data['SYNONYMS']:
+            if item in parser_data['SYNONYMS'][key]:
+                true_words.append(key)
+    if len(true_words) < len(list_words):
+        get_unknown_cmd()
+        return None
+    return true_words
 
 
-def is_direction(word):
-    return True if word in parser_data['DIRECTIONS'] else False
+def check_verb(list_words):
+    if list_words[0] not in parser_data["VERBS"]:
+        get_unknown_cmd()
+        return None
+    return list_words
 
 
-def parse_action(data_base, action):
-    if not action:
-        return
-    actions = action.split(';')
-    for each in actions:
-        components = each.split()
-
-        # if each.startswith('unblock'):
-        #     data_base.unblock(components[1])
-        #
-        # elif each.startswith('increment'):
-        #     data_base.increment(components[1])
-        #
-        # elif each.startswith('remove'):
-        #     data_base.remove(components[1])
-        #
-        # elif each.startswith('create'):
-        #     data_base.to_inv(components[1])
-        #
-        # elif each.startswith('state'):
-        #     try:
-        #         data_base.setState(components[1], int(components[2]))
-        #     except ValueError:
-        #         continue
+def combine(verb, dir_object, ind_object):
+    for word in parser_data['COMBINE']:
+        if word == verb:
+            for obj in parser_data['COMBINE'][verb]:
+                if obj == dir_object:
+                    for obj2 in parser_data['COMBINE'][verb][dir_object]:
+                        if obj2 == ind_object:
+                            return parser_data['COMBINE'][verb][dir_object][ind_object]
+    get_unknown_cmd()
+    return None
 
 
-def handle(data_base, verb, dir_object=None, ind_object=None):
+def handle_command(verb, dir_object=None, ind_object=None):
     # Handles a verb-only sentence
     if not dir_object and not ind_object:
-        return None
+        return [verb], None  # Is an ACTION
 
-    # Check verbs, results, and actions on parser.json
-    # verb = data_base.check_verb(verb)
-    # result = data_base.getResult(dir_object, ind_object, verb)
-    # action = data_base.getAction(dir_object, ind_object, verb)
+    if verb and dir_object and not ind_object:
+        return [verb, dir_object], None  # Is an ACTION
 
-    # parse_action(data_base, action)
-    # return result
+    result = combine(verb, dir_object, ind_object)  # Has a RESULT
+    return None, result
 
-# Functions relative to parser:
-    # PROMPT = '>> '
-    # check_verb(): return none if "". If not, check verbonyms
-    # clear_synonyms(): takes user input and check in each value of each key on parser.json "SYNONYMS" and takes key if True
-    #                   Synonyms of objects and verbs
-    # combine() --> check dumped .json; also return something if cant do
-    # default() --> for unrecognized commands: parse sentence and handle; if not, unknow cmd
 
-# parser.json
-    # combine: verb/obj1/ob2 dict as
-    #                               "verb": {
-    #                                       "obj1": {
-    #                                               "obj2": x,
-    #                                               "result": y}}
+def parse_command():
+    """Parses the sentence and returns a verb and the two objects (if applicable)"""
+    command, true_command = "", ""
+    while not command:
+        command = input(">> ").lower().split()
+        if command:
+            clean_command = remove_prepositions(command)
+            cleaner_command = check_synonyms(clean_command)
+            if cleaner_command:
+                true_command = check_verb(cleaner_command)
 
-# Functions relative to game in general:
-    # do_move()
-    # do_look(): in general ("look"); to object, to room, to direction (cleaner())
-    # do_examine(): ("examine") "Examine what?"; with obj, do_look(). ¿What if more info?
-    # inventory: do not show if there isnt any item
+        if not true_command:
+            command = ""
 
-# Functions relative to rooms:
-    # get_room_name()
-    # get_room_description()
-    # get_near_room_description() --> In current room (more complex dict) or from dumped .json (only one line, but how?)
-    # move_to_room()
-    # get_room_contents()
+        if command:
+            verb = true_command[0]
+            try:
+                direct_object = true_command[1]
+            except:
+                direct_object = None
+            try:
+                indirect_object = true_command[2]
+            except:
+                indirect_object = None
 
-# Functions relative to objects:
-    # get_inventory()
-    # look_at()
-    # pick_up() --> a "movable or not" is missing; also, if person or not; if there isnt any, "There isnt any %"; sucess message
-    # drop() --> implement; nothing to drop, "You dont have any %"; sucess message
+    action, result = handle_command(verb, direct_object, indirect_object)
+    return action, result
+
+
+print(parse_command())

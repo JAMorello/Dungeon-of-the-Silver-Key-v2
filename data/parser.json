@@ -30,8 +30,18 @@
                  "west", "w",
                  "south", "s",
                  "east", "e"],
+  "VERBS": ["verb"],
   "SYNONYMS": {
-    "x": ["y", "z"]
+    "verb": ["verb"],
+    "obj1": ["obj1"],
+    "obj2": ["obj2"]
+  },
+  "COMBINE": {
+    "verb": {
+      "obj1": {
+        "obj2": "result"
+      }
+    }
   }
 }
 
