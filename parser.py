@@ -67,7 +67,6 @@ def parse_action(data_base, action):
 
 
 def handle(data_base, verb, dir_object=None, ind_object=None):
-
     # Handles a verb-only sentence
     if not dir_object and not ind_object:
         return None
@@ -79,3 +78,37 @@ def handle(data_base, verb, dir_object=None, ind_object=None):
 
     # parse_action(data_base, action)
     # return result
+
+# Functions relative to parser:
+    # PROMPT = '>> '
+    # check_verb(): return none if "". If not, check verbonyms
+    # clear_synonyms(): takes user input and check in each value of each key on parser.json "SYNONYMS" and takes key if True
+    #                   Synonyms of objects and verbs
+    # combine() --> check dumped .json; also return something if cant do
+    # default() --> for unrecognized commands: parse sentence and handle; if not, unknow cmd
+
+# parser.json
+    # combine: verb/obj1/ob2 dict as
+    #                               "verb": {
+    #                                       "obj1": {
+    #                                               "obj2": x,
+    #                                               "result": y}}
+
+# Functions relative to game in general:
+    # do_move()
+    # do_look(): in general ("look"); to object, to room, to direction (cleaner())
+    # do_examine(): ("examine") "Examine what?"; with obj, do_look(). ¿What if more info?
+    # inventory: do not show if there isnt any item
+
+# Functions relative to rooms:
+    # get_room_name()
+    # get_room_description()
+    # get_near_room_description() --> In current room (more complex dict) or from dumped .json (only one line, but how?)
+    # move_to_room()
+    # get_room_contents()
+
+# Functions relative to objects:
+    # get_inventory()
+    # look_at()
+    # pick_up() --> a "movable or not" is missing; also, if person or not; if there isnt any, "There isnt any %"; sucess message
+    # drop() --> implement; nothing to drop, "You dont have any %"; sucess message

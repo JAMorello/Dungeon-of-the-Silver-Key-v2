@@ -29,6 +29,9 @@
   "DIRECTIONS": ["north", "n",
                  "west", "w",
                  "south", "s",
-                 "east", "e"]
+                 "east", "e"],
+  "SYNONYMS": {
+    "x": ["y", "z"]
+  }
 }
 
