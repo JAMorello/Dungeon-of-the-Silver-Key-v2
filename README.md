@@ -54,7 +54,7 @@ The game is not exhaustive or comprehensive, so there might be some misunderstan
         - [ ] ???
     
     * Game Flow
-        - [ ] Add a sleep() between text lines so one is not flooded with text
+        - [x] Add a sleep() between some functions so one is not flooded with text
         - [x] A "grab the left behind item in the room" function is missing
         - [ ] A "drop item" is missing
         - [x] The "view map" should show only the visited rooms
