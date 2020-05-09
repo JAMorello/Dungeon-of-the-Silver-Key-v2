@@ -121,7 +121,7 @@
         "signature move":"The Servant of the Nameless Mist uses ",
         "sanity move":"Your eyes are drawn to the endless abyss. You feel it gazing back...",
         "special move":"The servant casts a dreadful curse... you feel your life force being consumed...",
-        "speed":200,
+        "speed":[200, 300],
         "health":125,
         "drop chance":5,
         "attacks":{
