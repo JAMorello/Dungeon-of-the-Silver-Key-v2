@@ -1,5 +1,6 @@
 from random import randint
 from colorama import Fore
+from time import sleep
 
 # Base stats of the player at the beginning of the game. It´s boosted with talismans
 base_stats = {
@@ -46,14 +47,15 @@ class Player:
             self.sanity += 5
             if self.sanity > base_stats['max_sanity']:
                 self.sanity = base_stats['max_sanity']
-            print(Fore.GREEN + "Somewhat your mind feels a little more stable than before...")
+            print(Fore.GREEN + "Somewhat your mind feels a little more stable than before..." + Fore.WHITE)
+            sleep(1)
 
     def gain_health(self, amount, player):
         self.health += amount
         if self.health > base_stats['max_health']:
             self.health = base_stats['max_health']
         print(Fore.GREEN + f"Your gained {amount} points of health...")
-        print(Fore.GREEN + f"You have {player.health} points of health.")
+        print(Fore.GREEN + f"You have {player.health} points of health." + Fore.WHITE)
 
     def boost_stats(self, amount):
         # Boost max stats

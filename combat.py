@@ -2,10 +2,12 @@ from colorama import Fore
 from random import randint, choice
 import gamefunctions
 from player import Player
+from time import sleep
 
 
 def start_combat(player, enemy):
     print(Fore.MAGENTA + "Combat started!")
+    sleep(1)
     combat_ongoing = True
     turn_order = check_speed(player, enemy)
 
@@ -22,6 +24,7 @@ def start_combat(player, enemy):
                 establish_damage(damage, attacker=enemy, defender=player)
             if not damage == 0:
                 combat_ongoing = check_health(player, enemy)
+            sleep(1.5)
 
 
 def check_speed(player, enemy):
@@ -95,6 +98,7 @@ def check_health(player, enemy, show=True):
     if player.health <= 0:
         if show:
             print(Fore.RED + "Your health is 0.")
+            sleep(1)
             gamefunctions.game_over(player, dead_in_battle=True)
     else:
         if show:
@@ -183,7 +187,7 @@ def sanity_fluctuation(player, amount):
         player.sanity = player.base_stats['max_sanity']
     if player.sanity < 0:
         gamefunctions.game_over(player, sanity_drain=True)
-    print(Fore.GREEN + "Your sanity is " + str(player.sanity))
+    print(Fore.GREEN + "Your sanity is " + str(player.sanity) + Fore.WHITE)
     change_score(player, points=-amount, sanity_lost=True)
 
 
