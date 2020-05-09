@@ -10,19 +10,19 @@ def get_unknown_cmd():
     print(choice(parser_data['UNKNOWN_CMD_RESPONSE']))
 
 
-def remove_prepositions(list_words):
+def remove_prepositions_adjectives(list_words):
     result = list()
     for word in list_words:
-        if word not in parser_data['PREPOSITIONS']:
+        if word not in parser_data['PREPOSITIONS'] and word not in parser_data['ADJECTIVES']:
             result.append(word)
     return result
 
 
 def check_synonyms(list_words):
     true_words = list()
-    for item in list_words:
+    for word in list_words:
         for key in parser_data['SYNONYMS']:
-            if item in parser_data['SYNONYMS'][key]:
+            if word in parser_data['SYNONYMS'][key]:
                 true_words.append(key)
     if len(true_words) < len(list_words):
         get_unknown_cmd()
@@ -39,6 +39,7 @@ def check_verb(list_words):
 
 def combine(verb, dir_object, ind_object):
     for word in parser_data['COMBINE']:
+        print("lOl")
         if word == verb:
             for obj in parser_data['COMBINE'][verb]:
                 if obj == dir_object:
@@ -67,7 +68,7 @@ def parse_command():
     while not command:
         command = input(">> ").lower().split()
         if command:
-            clean_command = remove_prepositions(command)
+            clean_command = remove_prepositions_adjectives(command)
             cleaner_command = check_synonyms(clean_command)
             if cleaner_command:
                 true_command = check_verb(cleaner_command)
