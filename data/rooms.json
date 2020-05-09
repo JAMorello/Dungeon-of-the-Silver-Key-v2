@@ -7,7 +7,7 @@
         "description":"Blast marks and dark stains litter the walls of this room. In the center lies a robed skeleton grasping a blue potion",
         "cleared":false,
         "directions":{
-            "string":"There are doors to the [S]outh and [E]ast",
+            "string":"There are doors to the south and east",
             "available":{
                 "s":"room_two",
                 "e":"room_six"
@@ -32,7 +32,7 @@
         "description":"A bare stone room, with a single clay golem wandering on the far side.",
         "cleared":false,
         "directions":{
-            "string":"There are doors to the [N]orth and [E]ast",
+            "string":"There are doors to the north and east",
             "available":{
                 "n":"room_one",
                 "e":"room_seven"
@@ -57,7 +57,7 @@
         "description":"There is a foul muck covering the floor. A group of corpses lie in the center of the room,\nstrangely positioned. From the far side of the room, you feel a foul presence.",
         "cleared":false,
         "directions":{
-            "string":"There is a door to the [E]ast.",
+            "string":"There is a door to the east.",
             "available":{
                 "e":"room_eight"
             }
@@ -81,7 +81,7 @@
         "description":"Damaged and collapsed shelves decorate the walls, and overturned cauldrons and shattered flasks litter the floor.\nIt appears to be an ancient alchemical storeroom.",
         "cleared":false,
         "directions":{
-            "string":"There are doors to the [S]outh and [E]ast",
+            "string":"There are doors to the south and east",
             "available":{
                 "s":"room_five",
                 "e":"room_nine"
@@ -106,7 +106,7 @@
         "description":" The room is littered with the bodies of fallen Lesser Spawn.\nIn the center, the corpse of a long dead warrior clutches something.\nBetween you and the skeleton stands a Moon-Beast.",
         "cleared":false,
         "directions":{
-            "string":"There is a door to the [N]orth",
+            "string":"There is a door to the north",
             "available":{
                 "n":"room_four"
             }
@@ -130,7 +130,7 @@
         "description":"This room is barren and nondescript, with only a few skeletons to keep you company.",
         "cleared":false,
         "directions":{
-            "string":"There are doors to the [S]outh, [E]ast, and [W]est",
+            "string":"There are doors to the south, east, and west",
             "available":{
                 "s":"room_seven",
                 "e":"room_eleven",
@@ -156,7 +156,7 @@
         "description":" The room is empty, save for a lone pedestal holding an ancient scroll.\nBefore you reach the pedestal, a thick tar-like liquid flows from the walls\nand amasses into a horrible shape.",
         "cleared":false,
         "directions":{
-            "string":"There are doors to the [N]orth, [S]outh, [E]ast, and [W]est",
+            "string":"There are doors to the north, south, east, and west",
             "available":{
                 "n":"room_six",
                 "s":"room_eight",
@@ -209,7 +209,7 @@
         "description":"This room is barren and nondescript, with only a few skeletons to keep you company.",
         "cleared":false,
         "directions":{
-            "string":"There are doors to the [S]outh, [E]ast, and [W]est",
+            "string":"There are doors to the south, east, and west",
             "available":{
                 "s":"room_ten",
                 "e":"room_fourteen",
@@ -235,7 +235,7 @@
         "description":"Damaged and collapsed shelves decorate the walls, and overturned cauldrons and shattered flasks litter the floor.\nIt appears to be an ancient alchemical storeroom.",
         "cleared":false,
         "directions":{
-            "string":"There is a door to the [N]orth",
+            "string":"There is a door to the north",
             "available":{
                 "n":"room_nine"
             }
@@ -259,7 +259,7 @@
         "description":"You see bare stone room, with a single clay golem wandering on the far side.",
         "cleared":false,
         "directions":{
-            "string":"There are doors to the [S]outh, [W]est, and [E]ast",
+            "string":"There are doors to the south, west, and east",
             "available":{
                 "s":"room_twelve",
                 "w":"room_six",
@@ -285,7 +285,7 @@
         "description":"Damaged and collapsed shelves decorate the walls, and overturned cauldrons and shattered flasks litter the floor.\nIt appears to be an ancient alchemical storeroom.",
         "cleared":false,
         "directions":{
-            "string":"There are doors to the [N]orth, [S]outh, [E]ast, and [W]est.",
+            "string":"There are doors to the north, south, east, and west.",
             "available":{
                 "n":"room_eleven",
                 "s":"room_thirteen",
@@ -312,7 +312,7 @@
         "description":"You see a barren room made of ancient stone riddled with moss and pockmarks.\nThere seems to be no enemies or items in this room.",
         "cleared":false,
         "directions":{
-            "string":"There are door to the [N]orth, [S]outh, [E]ast, and [W]est",
+            "string":"There are door to the north, south, east, and west",
             "available":{
                 "n":"room_twelve",
                 "s":"room_fourteen",
@@ -339,7 +339,7 @@
         "description":"You see bare stone room, with a single clay golem wandering on the far side.",
         "cleared":false,
         "directions":{
-            "string":"There are doors to the [N]orth, [S]outh, [W]est, and [E]ast",
+            "string":"There are doors to the north, south, west, and east",
             "available":{
                 "n":"room_thirteen",
                 "s":"room_fifteen",
@@ -366,7 +366,7 @@
         "description":"This room is large and ornate, with carvings of every sort adorning the walls.\nIn the center is a large pedestal with a single Silver Key laying upon it",
         "cleared":false,
         "directions":{
-            "string":"There is a door to the [N]orth",
+            "string":"There is a door to the north",
             "available":{
                 "n":"room_fourteen"
             }
@@ -390,7 +390,7 @@
         "description":"This room is barren and nondescript, with only a few skeletons to keep you company.",
         "cleared":false,
         "directions":{
-            "string":"There are doors to the [S]outh, [E]ast, and [W]est",
+            "string":"There are doors to the south, east, and west",
             "available":{
                 "s":"room_seventeen",
                 "e":"room_twentyone",
@@ -416,7 +416,7 @@
         "description":"You see bare stone room, with a single Lesser Spawn on the far side.",
         "cleared":false,
         "directions":{
-            "string":"There are doors to the [N]orth, [S]outh, [E]ast, and [W]est",
+            "string":"There are doors to the north, south, east, and west",
             "available":{
                 "n":"room_sixteen",
                 "s":"room_eighteen",
@@ -443,7 +443,7 @@
         "description":"You see bare stone room, with a single clay golem wandering on the far side.",
         "cleared":false,
         "directions":{
-            "string":"There are doors to the [N]orth, [W]est, and [E]ast",
+            "string":"There are doors to the north, west, and east",
             "available":{
                 "n":"room_seventeen",
                 "e":"room_twentythree",
@@ -469,7 +469,7 @@
         "description":"This room is barren and nondescript, with only a few skeletons to keep you company.",
         "cleared":false,
         "directions":{
-            "string":"There are doors to the [S]outh, [E]ast, and [W]est",
+            "string":"There are doors to the south, east, and west",
             "available":{
                 "s":"room_twenty",
                 "e":"room_twentyfour",
@@ -495,7 +495,7 @@
         "description":"You see bare stone room, with a single Lesser Spawn on the far side.",
         "cleared":false,
         "directions":{
-            "string":"There is a door to the [N]orth",
+            "string":"There is a door to the north",
             "available":{
                 "n":"room_nineteen"
             }
@@ -519,7 +519,7 @@
         "description":"A stale wind sweeps past you as you enter the room.\nOn the far side there is a pedestal with an strange book upon it.\nYou have a feeling that you are not alone.",
         "cleared":false,
         "directions":{
-            "string":"There are doors to the [S]outh and [W]est",
+            "string":"There are doors to the south and west",
             "available":{
                 "s":"room_twentytwo",
                 "w":"room_sixteen"
@@ -544,7 +544,7 @@
         "description":"This room is barren and nondescript, with only a few skeletons to keep you company.",
         "cleared":false,
         "directions":{
-            "string":"There are doors to the [N]orth and [W]est",
+            "string":"There are doors to the north and west",
             "available":{
                 "n":"room_twentyone",
                 "w":"room_seventeen"
@@ -569,7 +569,7 @@
         "description":"In the center room, a skeleton lays holding something.\nAs the door closes, you see a rift open on the far side of the room.\nA horrifying figure emerges.",
         "cleared":false,
         "directions":{
-            "string":"There is a door to the [W]est",
+            "string":"There is a door to the west",
             "available":{
                 "w":"room_eighteen"
             }
@@ -593,7 +593,7 @@
         "description":"You see bare stone room, with a single Lesser Spawn on the far side.",
         "cleared":false,
         "directions":{
-            "string":"There are doors to the [S]outh and [W]est",
+            "string":"There are doors to the south and west",
             "available":{
                 "s":"room_twentyfive",
                 "w":"room_nineteen"
@@ -618,7 +618,7 @@
         "description":"Damaged and collapsed shelves decorate the walls, and overturned cauldrons and shattered flasks litter the floor.\nIt appears to be an ancient alchemical storeroom.",
         "cleared":false,
         "directions":{
-            "string":"There is a door to the [N]orth",
+            "string":"There is a door to the north",
             "available":{
                 "n":"room_twentyfour"
             }
