@@ -4,6 +4,7 @@ from tabulate import tabulate
 import items
 from items import Book, Talisman
 from combat import mana_fluctuation
+from time import sleep
 
 
 class Inventory:
@@ -16,18 +17,18 @@ class Inventory:
         else:
             self.backpack.update({item.name: [item, 1]})
 
-    def use_item(self, item, player):
-        if item == "Health Potion":
-            self.drop_item(item)
-            player.gain_health(items.potion['health_potion']['healing'], player)
-        if item == "Mana Potion":
-            self.drop_item(item)
-            mana_fluctuation(player, items.potion['mana_potion']['mana_recover'])
-
     def drop_item(self, item):
         self.backpack[item][1] -= 1
         if self.backpack[item][1] == 0:
             del self.backpack[item]
+
+    def use_item(self, item, player):
+        if item == "health":
+            self.drop_item("Health Potion")
+            player.gain_health(items.potion['health_potion']['healing'], player)
+        if item == "mana":
+            self.drop_item("Mana Potion")
+            mana_fluctuation(player, items.potion['mana_potion']['mana_recover'])
 
     def show_inventory(self):
         show_inventory = [['Name', 'Quantity']]
@@ -35,35 +36,26 @@ class Inventory:
             show_inventory.append([item, self.backpack[item][1]])
         print(tabulate(show_inventory, tablefmt="fancy_grid"))
 
-    def use_inventory(self, player=None, inspect=False, use=False):
+    def inspect_inventory(self):
         self.show_inventory()
         more_actions = ''
-        item = ""
         response = True
         while not more_actions:
-            if inspect:
-                item = input("What item do you want to inspect? (Or else, [Q]uit) ")
-                if item in INVENTORY.backpack:
-                    self.backpack[item][0].inspect_item()
-                else:
-                    response = False
-            if use:
-                item = input("Select usable item (Or else, [Q]uit): ")
-                if item in INVENTORY.backpack:
-                    INVENTORY.use_item(item, player)
-                else:
-                    response = False
+            item = input("What item do you want to inspect? (Or else, [Q]uit) ")
+            if item in INVENTORY.backpack:
+                self.backpack[item][0].inspect_item()
+            else:
+                response = False
 
             if not response:
-                if item.lower() == "q":
+                if item.lower() == "q" or item.lower() == "quit":
                     more_actions = "quit"
                 else:
                     print("Else you don´t have that object or you didn´t write its name correctly.")
             else:
-                more_actions = input("Anything else? [Y/N]: ").upper()
-                if more_actions == "Y":
+                more_actions = input("Anything else? [Yes/No]: ").lower()
+                if more_actions == "yes" or more_actions == "y":
                     more_actions = ""
-                    continue
 
 
 def pickup_item(player, item):
@@ -71,24 +63,27 @@ def pickup_item(player, item):
     item_grabbed = False
     done_picking = False
     while not done_picking:
-        action = input("Take it? [Y/N]: ").upper()
-        if action == "Y":
+        action = input("Take it? [Yes/No]: ").lower()
+        if action == "yes" or action == "y":
             print(Fore.WHITE + item.grab_object)
             INVENTORY.add_item(item)
+            sleep(1)
             if type(item) is Book:
                 player.attacks[item.spell] = item.damage
-                print(Fore.GREEN + f"You learn {item.spell}!")
+                print(Fore.GREEN + f"You learn {item.spell}!" + Fore.WHITE)
+                sleep(1)
             if type(item) is Talisman:
                 player.boost_stats(item.stat_boost)
-                print(Fore.GREEN + f"You feel stronger!")
+                print(Fore.GREEN + f"You feel stronger!" + Fore.WHITE)
+                sleep(1)
             item_grabbed = True
             done_picking = True
-        elif action == "N":
-            confirmation = input("Are you sure you wish to leave the item here? [Y/N]: ").upper()
-            if confirmation == "Y":
+        elif action == "no" or action == "n":
+            confirmation = input("Are you sure you wish to leave the item here? [Yes/No]: ").lower()
+            if confirmation == "yes" or confirmation == "y":
                 print("You leave the item where it is.")
                 done_picking = True
-            elif confirmation != "N":
+            elif confirmation != "no" or confirmation != "n":
                 print("Make up your mind!")
         else:
             print("Make up your mind!")
@@ -102,28 +97,34 @@ def pick_key(player, item):
         if "Sun Talisman" and "Ancient Scroll" not in INVENTORY.backpack:
             print(Fore.YELLOW + "You reach for the key, but a force demands you hesitate... visions of a sun and a\n"
                                 "scroll flash through your mind. Perhaps there is still more to find in this dungeon...")
-            action = input(Fore.WHITE + "Pick up the key, despite your better instincts? Y/N: ").upper()
-            if action == "Y":
+            sleep(1)
+            action = input(Fore.WHITE + "Pick up the key, despite your better instincts? [Yes/No]: ").lower()
+            if action == "yes" or action == "y":
                 print(Fore.WHITE + item.grab_object)
-                item.inspect_item()
+                sleep(1)
                 INVENTORY.add_item(item)
                 player.boost_stats(item.stat_boost)
-            elif action == "N":
+                print(Fore.GREEN + f"You feel stronger!" + Fore.WHITE)
+            elif action == "no" or action == "n":
                 print(Fore.WHITE + "You decide to heed your instincts and stay your hand... perhaps the dungeon has "
                                    "some items left that will aid in your journey.")
+                sleep(1)
             else:
                 print("Make up your mind!")
             done_picking = True
         else:
-            action = input(Fore.WHITE + "Pick up the key? Y/N: ").upper()
-            if action == "Y":
+            action = input(Fore.WHITE + "Pick up the key? [Yes/No]: ").upper()
+            if action == "yes" or action == "y":
                 print(Fore.WHITE + item.grab_object)
                 item.inspect_item()
+                sleep(1)
                 INVENTORY.add_item(item)
                 player.boost_stats(item.stat_boost)
-            elif action == "N":
+                print(Fore.GREEN + f"You feel stronger!" + Fore.WHITE)
+            elif action == "no" or action == "n":
                 print(Fore.WHITE + "You decide to heed your instincts and stay your hand... perhaps the dungeon has "
                                    "some items left that will aid in your journey.")
+                sleep(1)
             else:
                 print("Make up your mind!")
             done_picking = True
@@ -133,10 +134,17 @@ def looting_enemy(enemy):
     drop = randrange(enemy.drop_chance)
     if drop >= 3:
         health_potion = items.Potion(items.potion['health_potion'])
-        print(Fore.GREEN + "The " + enemy.name + " drops a health potion!")
+        print(Fore.GREEN + "The " + enemy.name + " drops a health potion!" + Fore.WHITE)
         INVENTORY.add_item(health_potion)
     if drop < 3:
         print(Fore.WHITE + "The " + enemy.name + " did not drop any items.")
+    sleep(1)
 
 
 INVENTORY = Inventory()
+
+# TODO: Functions relative to objects:
+# look_at()
+# pick_up() --> a "movable or not" is missing; also, if person or not;
+# if there isn´t any, "There isn´t any %"; success message
+# drop() --> implement; nothing to drop, "You don´t have any %"; success message

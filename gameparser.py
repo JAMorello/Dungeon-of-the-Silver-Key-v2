@@ -39,7 +39,6 @@ def check_verb(list_words):
 
 def combine(verb, dir_object, ind_object):
     for word in parser_data['COMBINE']:
-        print("lOl")
         if word == verb:
             for obj in parser_data['COMBINE'][verb]:
                 if obj == dir_object:
@@ -89,6 +88,3 @@ def parse_command():
 
     action, result = handle_command(verb, direct_object, indirect_object)
     return action, result
-
-
-print(parse_command())

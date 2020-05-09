@@ -5,8 +5,9 @@ from colorama import Fore, Style, Back
 from tabulate import tabulate
 # https://pypi.org/project/tabulate/
 from time import sleep
-from inventory import INVENTORY
+from inventory import INVENTORY, pick_key
 from player import Player
+from gameparser import parse_command
 
 GAME_MAP = [[" ? ", " ? ", " ? ", " ? ", " ? "],
             [" ? ", " ? ", " ? ", " ? ", " ? "],
@@ -33,16 +34,12 @@ def display_title():
                                                                 (/ *(           
     """
 
-    # Old key ascii art
-    #
-    #  8 8 8 8                     ,ooo.
-    #  8a8 8a8                    oP   ?b
-    # d888a888zzzzzzzzzzzzzzzzzzzz8     8b
-    #  `""^""'                    ?o___oP'
-
     print(Fore.YELLOW + title)
+    sleep(1)
     print(Fore.YELLOW + title2)
+    sleep(1)
     print(Fore.WHITE + custom_art)
+    sleep(3)
 
 
 def enter_dungeon():
@@ -58,20 +55,21 @@ def enter_dungeon():
 
     # Player first decision: enter or not the dungeon
     while True:
-        enter_the_dungeon = input("Your mark has been left. Will you enter the dungeon? [Y/N]: ").upper()
+        enter_the_dungeon = input("Your mark has been left. Will you enter the dungeon? [Yes/No]: ").lower()
 
         # Enter the dungeon
-        if enter_the_dungeon == "Y":
+        if enter_the_dungeon == "yes" or enter_the_dungeon == "y":
             print("You steel your resolve and descend into the abyss.")
+            sleep(2)
             break
 
         # Doubt
-        elif enter_the_dungeon == "N":
+        elif enter_the_dungeon == "no" or enter_the_dungeon == "n":
             print("You think back to all those depending on you. Surely, you would'nt let them down so easily?")
-            are_you_sure = input("Let those who are counting on you down? [Y/N]: ").upper()
+            are_you_sure = input("Let those who are counting on you down? [Yes/No]: ").lower()
 
             # Cowardice - Game over
-            if are_you_sure == "Y":
+            if are_you_sure == "yes" or are_you_sure == "y":
                 print(Fore.RED + "This world has no room for cowards such as you.")
                 player.PlayerHealth = 0
                 print("You have been deemed unworthy, perhaps the world will find a more suitable hero to conquer the "
@@ -80,7 +78,7 @@ def enter_dungeon():
                 exit()
 
             # Resolve - return to initial state
-            elif are_you_sure == "N":
+            elif are_you_sure == "no" or are_you_sure == "n":
                 print("The thoughts of those who depend on you bolsters your courage.")
                 continue
 
@@ -97,45 +95,81 @@ def enter_dungeon():
 
 
 def perform_action(player, room):
-    """  Essential to game operation. This function allows the player to inspect inventory, use items, and view the map
-    outside of combat"""
+    """  Essential to game operation. This function allows the player to do a lot of things outside of combat """
 
     done = False
     while not done:
-        action = input(Fore.WHITE + "[I]nspect inventory, [U]se item, [E]xamine room, [G]rab item, [V]iew map, "
-                                    "or [C]ontinue?: ").upper()
+        action, result = parse_command()
 
-        # Inspect items in inventory
-        if action == "I":
-            INVENTORY.use_inventory(inspect=True)
+        if result:
+            # Use potions in inventory
+            if result == "use_health_potion":
+                if "Health Potion" in INVENTORY.backpack:
+                    INVENTORY.use_item('health', player)
+                else:
+                    print("You don´t have any Health Potion")
+            if result == "use_mana_potion":
+                if "Mana Potion" in INVENTORY.backpack:
+                    INVENTORY.use_item('mana', player)
+                else:
+                    print("You don´t have any Mana Potion")
 
-        # Use objects in inventory
-        if action == "U":
-            INVENTORY.use_inventory(player, use=True)
+            # Grab the left behind potion in the room
+            if result == "take_potion":
+                if not room.contents['taken']:
+                    room.create_and_pickup_item(player, take_item="potion")
+                else:
+                    print("There isn´t any item here")
 
-        # Examine the room (shows the room´s description and his contents)
-        if action == "E":
-            room.location_check()
+        if action:
 
-        # Grab the left behind item in the room
-        if action == "G":
-            if not room.contents['taken']:
-                room.create_and_pickup_item(player)
-            else:
-                print("There isn´t any item here")
+            if action[0] == "look":
 
-        # View game map
-        if action == "V":
-            print(Fore.YELLOW + "You are in room " + str(room.number['id']))
-            print(tabulate(GAME_MAP, tablefmt="fancy_grid"))
-            print(Fore.LIGHTWHITE_EX + """
-              N
-            W o E
-              S
-                           """)
+                # Inspect items in inventory
+                if action[1] == "inventory" or action[1] == "inv":
+                    INVENTORY.inspect_inventory()
 
-        if action == "C":
-            done = True
+                # Examine the room (shows the room´s description and his contents)
+                if action[1] == "room":
+                    room.location_check()
+
+                # Shows the available directions to move
+                if action[1] == "door":
+                    room.available_directions()
+
+                # View game map
+                if action[1] == "map":
+                    print(Fore.YELLOW + "You are in room " + str(room.number['id']))
+                    print(tabulate(GAME_MAP, tablefmt="fancy_grid"))
+
+            # Grab the left behind potion in the room
+            if action[0] == "take":
+                if not room.contents['taken']:
+                    if action[1] == "potion":
+                        room.create_and_pickup_item(player, take_item="potion")
+                    if action[1] == "book":
+                        room.create_and_pickup_item(player, take_item="book")
+                    if action[1] == "talisman":
+                        room.create_and_pickup_item(player, take_item="talisman")
+                    if action[1] == "key":
+                        key = room.create_and_pickup_item(player, take_item="talisman", key=True)
+                        pick_key(player, key)
+                else:
+                    print("There isn´t any item here")
+
+            # This changes the rooms: the players travels from one room to another.
+            if action[0] == "move":
+                if action[1] not in room.directions['available']:
+                    print(Fore.YELLOW + "There is no door in that direction.")
+                else:
+                    player.location = room.directions['available'][action[1]]
+                    done = True
+
+
+# TODO: Functions relative to game in general:
+    # do_look(): in general ("look"); to object, to room, to direction (cleaner())
+    # do_examine(): ("examine") "Examine what?"; with obj, do_look(). ¿What if more info?
+    # inventory: do not show if there isnt any item
 
 
 def calculate_score(player):
@@ -144,10 +178,15 @@ def calculate_score(player):
     score = positives - negatives
 
     print("\n" + Fore.YELLOW + "You did " + str(player.damage_done) + " points of damage!")
+    sleep(0.25)
     print(Fore.YELLOW + "You healed for " + str(player.amount_healed) + " points!")
+    sleep(0.25)
     print(Fore.RED + "You took " + str(player.damage_taken) + " points of damage!")
+    sleep(0.25)
     print(Fore.RED + "You lost " + str(player.sanity_lost) + " points of sanity!")
+    sleep(0.25)
     print(Fore.YELLOW + "Your score was: " + str(score) + " points.\n")
+    sleep(1)
 
 
 # Game over due sanity reaching 0 points or less or dying in a battle
@@ -158,9 +197,11 @@ def game_over(player, sanity_drain=False, dead_in_battle=False):
         print(Fore.RED + "The darkness of the dungeon comes rushing in, a terrifying force of overwhelming power. From "
                          "far away, you hear yourself cry out.")
         print(Fore.RED + "You have been driven to madness.\n")
+        sleep(1.5)
     if dead_in_battle:
         print(Fore.RED + "You gasp for air while drowning in your own blood.\n"
                          "You have died.")
+        sleep(1.5)
 
     calculate_score(player)
     print(Fore.RED + game_end)
@@ -171,6 +212,7 @@ def game_over(player, sanity_drain=False, dead_in_battle=False):
 def victory(player):
     victory_message = Figlet(font='cyberlarge').renderText("YOU STAND VICTORIOUS\n")
     print(Fore.GREEN + victory_message)
+    sleep(2)
 
     calculate_score(player)
 
@@ -187,20 +229,20 @@ def victory(player):
           Fore.BLUE + "...\n You have conquered a mighty foe, risking life and limb to prove your worth...\n"
                       "Consider it acknowledged. For your deeds, I bid you keep that Silver Key.\n"
                       "Speak my name, and it shall unlock all the doors of the cosmos.")
-
+    sleep(2)
     final_choice = input(Fore.WHITE + "Speak the name? [Y/N]: ").upper()
 
     if final_choice == "Y":
         print(Fore.GREEN + Style.BRIGHT +
               "                         You shout to the cosmos: " + Fore.BLUE + "YOG-SOTHOTH")
+        sleep(1)
         print(Fore.WHITE + Style.RESET_ALL + Back.RESET +
               "The Silver Key glows with cosmic radiance and your vision fades to white... \n"
-              "You know not what awaits you next.\n\n" +
-              Fore.BLUE + "[[END OF THE GAME]]")
-        exit()
+              "You know not what awaits you next.\n\n")
     else:
         print(Fore.WHITE + "Your vision fades to black... when you awake, you stand at the entrance to the dungeon.\n"
                            "The walls, once filled with the names of those who challenged the dungeon, are now clear,\n"
-                           "save for one name... """ + Fore.YELLOW + player.username + "\n\n" +
-              Fore.BLUE + "[[END OF THE GAME]]")
-        exit()
+                           "save for one name... """ + Fore.YELLOW + player.username + "\n\n")
+    sleep(2)
+    print(Fore.BLUE + "[[END OF THE GAME]]")
+    exit()
