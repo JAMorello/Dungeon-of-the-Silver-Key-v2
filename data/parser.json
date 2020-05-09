@@ -1,47 +1,138 @@
 {
-  "UNKNOWN_CMD_RESPONSE": ["I'm not sure I understand...",
-                           "Hmmm...",
-                           "What?",
-                           "I don't get it...",
-                           "Come again?"],
-  "PREPOSITIONS": ["at",
-                   "with",
-                   "in",
-                   "to",
-                   "on",
-                   "inside",
-                   "into",
-                   "onto",
-                   "about",
-                   "the",
-                   "a",
-                   "an",
-                   "out"],
-  "NPC_VERBS": ["ask",
-                "question",
-                "talk",
-                "tell",
-                "say",
-                "speak",
-                "show",
-                "hand",
-                "give"],
-  "DIRECTIONS": ["north", "n",
-                 "west", "w",
-                 "south", "s",
-                 "east", "e"],
-  "VERBS": ["verb"],
-  "SYNONYMS": {
-    "verb": ["verb"],
-    "obj1": ["obj1"],
-    "obj2": ["obj2"]
-  },
+  "ADJECTIVES": [
+    "cursed",
+    "ancient",
+    "ornate"
+  ],
   "COMBINE": {
-    "verb": {
-      "obj1": {
-        "obj2": "result"
+    "use": {
+      "health": {
+        "potion": "use_health_potion"
+      },
+      "mana": {
+        "potion": "use_mana_potion"
+      },
+      "potion": {
+        "health": "use_health_potion",
+        "mana": "use_mana_potion"
+      }
+    },
+    "take": {
+      "health": {
+        "potion": "take_potion"
+      },
+      "mana": {
+        "potion": "take_potion"
+      },
+      "potion": {
+        "health": "take_potion",
+        "mana": "take_potion"
       }
     }
-  }
+  },
+  "PREPOSITIONS": [
+    "at",
+    "for",
+    "with",
+    "in",
+    "to",
+    "on",
+    "inside",
+    "into",
+    "onto",
+    "about",
+    "the",
+    "a",
+    "an",
+    "out"
+  ],
+  "SYNONYMS": {
+    "move": [
+      "move",
+      "go",
+      "travel"
+    ],
+    "look": [
+      "look",
+      "see",
+      "observe",
+      "examine",
+      "inspect",
+      "watch"
+    ],
+    "take": [
+      "take",
+      "grab",
+      "pick"
+    ],
+    "use": [
+      "use"
+    ],
+    "inventory": [
+      "inventory",
+      "inv"
+    ],
+    "book": [
+      "book",
+      "tome",
+      "scroll",
+      "spellbook"
+    ],
+    "potion": [
+      "potion"
+    ],
+    "talisman": [
+      "talisman"
+    ],
+    "key": [
+      "key"
+    ],
+    "map": [
+      "map"
+    ],
+    "room": [
+      "room"
+    ],
+    "door": [
+      "door",
+      "doors",
+      "directions",
+      "direction"
+    ],
+    "n": [
+      "north",
+      "n"
+    ],
+    "s": [
+      "south",
+      "s"
+    ],
+    "e": [
+      "east",
+      "e"
+    ],
+    "w": [
+      "west",
+      "w"
+    ],
+    "health": [
+      "health"
+    ],
+    "mana": [
+      "mana"
+    ]
+  },
+  "UNKNOWN_CMD_RESPONSE": [
+    "I'm not sure I understand...",
+    "Hmmm...",
+    "What?",
+    "I don't get it...",
+    "Come again?"
+  ],
+  "VERBS": [
+    "move",
+    "look",
+    "take",
+    "use"
+  ]
 }
-
