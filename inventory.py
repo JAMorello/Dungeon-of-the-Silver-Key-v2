@@ -96,9 +96,10 @@ def pick_key(player, item):
     while not done_picking:
         if "Sun Talisman" and "Ancient Scroll" not in INVENTORY.backpack:
             print(Fore.YELLOW + "You reach for the key, but a force demands you hesitate... visions of a sun and a\n"
-                                "scroll flash through your mind. Perhaps there is still more to find in this dungeon...")
+                                "scroll flash through your mind. Perhaps there is still more to find in this dungeon..."
+                  + Fore.WHITE)
             sleep(1)
-            action = input(Fore.WHITE + "Pick up the key, despite your better instincts? [Yes/No]: ").lower()
+            action = input("Pick up the key, despite your better instincts? [Yes/No]: ").lower()
             if action == "yes" or action == "y":
                 print(Fore.WHITE + item.grab_object)
                 sleep(1)
@@ -113,7 +114,7 @@ def pick_key(player, item):
                 print("Make up your mind!")
             done_picking = True
         else:
-            action = input(Fore.WHITE + "Pick up the key? [Yes/No]: ").upper()
+            action = input("Pick up the key? [Yes/No]: ").lower()
             if action == "yes" or action == "y":
                 print(Fore.WHITE + item.grab_object)
                 item.inspect_item()
