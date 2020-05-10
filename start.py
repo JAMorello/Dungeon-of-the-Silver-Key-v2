@@ -1,5 +1,6 @@
 import gamefunctions
 import rooms
+import colorama
 
 # Original coded by Mili-NT (Python 3.6.0, January 2019)
 # Modifications made by JAMorello (Python 3.8.2, April 2020)
@@ -7,6 +8,7 @@ import rooms
 
 
 if __name__ == '__main__':
+    colorama.init()
     gamefunctions.display_title()
     player = gamefunctions.enter_dungeon()
     # First action of the player

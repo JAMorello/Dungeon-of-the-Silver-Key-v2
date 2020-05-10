@@ -4,6 +4,7 @@ from colorama import Fore, Style, Back
 # https://pypi.org/project/colorama/
 from tabulate import tabulate
 # https://pypi.org/project/tabulate/
+from sys import exit
 from time import sleep
 from inventory import INVENTORY, pick_key
 from player import Player
@@ -74,7 +75,9 @@ def enter_dungeon():
                 player.PlayerHealth = 0
                 print("You have been deemed unworthy, perhaps the world will find a more suitable hero to conquer the "
                       "dungeon.")
+                sleep(3)
                 game_over(player)
+                sleep(180)
                 exit()
 
             # Resolve - return to initial state
@@ -141,6 +144,7 @@ def perform_action(player, room):
                 if action[1] == "map":
                     print(Fore.YELLOW + "You are in room " + str(room.number['id']))
                     print(tabulate(GAME_MAP, tablefmt="fancy_grid"))
+                    print(Fore.WHITE + "")
 
             # Grab the left behind potion in the room
             if action[0] == "take":
@@ -160,7 +164,7 @@ def perform_action(player, room):
             # This changes the rooms: the players travels from one room to another.
             if action[0] == "move":
                 if action[1] not in room.directions['available']:
-                    print(Fore.YELLOW + "There is no door in that direction.")
+                    print(Fore.YELLOW + "There is no door in that direction." + Fore.WHITE)
                 else:
                     player.location = room.directions['available'][action[1]]
                     done = True
@@ -177,7 +181,7 @@ def calculate_score(player):
     negatives = player.damage_taken + player.sanity_lost
     score = positives - negatives
 
-    print("\n" + Fore.YELLOW + "You did " + str(player.damage_done) + " points of damage!")
+    print("\n\n" + Fore.YELLOW + "You did " + str(player.damage_done) + " points of damage!")
     sleep(0.25)
     print(Fore.YELLOW + "You healed for " + str(player.amount_healed) + " points!")
     sleep(0.25)
@@ -228,21 +232,22 @@ def victory(player):
           Fore.GREEN + player.username +
           Fore.BLUE + "...\n You have conquered a mighty foe, risking life and limb to prove your worth...\n"
                       "Consider it acknowledged. For your deeds, I bid you keep that Silver Key.\n"
-                      "Speak my name, and it shall unlock all the doors of the cosmos.")
+                      "Speak my name, and it shall unlock all the doors of the cosmos." + Fore.WHITE)
     sleep(2)
-    final_choice = input(Fore.WHITE + "Speak the name? [Y/N]: ").upper()
+    final_choice = input("Speak the name? [Yes/No]: ").lower()
 
-    if final_choice == "Y":
+    if final_choice == "yes" or final_choice == "y":
         print(Fore.GREEN + Style.BRIGHT +
-              "                         You shout to the cosmos: " + Fore.BLUE + "YOG-SOTHOTH")
+              "\n                         You shout to the cosmos: " + Fore.YELLOW + "YOG-SOTHOTH")
         sleep(1)
         print(Fore.WHITE + Style.RESET_ALL + Back.RESET +
-              "The Silver Key glows with cosmic radiance and your vision fades to white... \n"
+              "\nThe Silver Key glows with cosmic radiance and your vision fades to white... \n"
               "You know not what awaits you next.\n\n")
     else:
         print(Fore.WHITE + "Your vision fades to black... when you awake, you stand at the entrance to the dungeon.\n"
                            "The walls, once filled with the names of those who challenged the dungeon, are now clear,\n"
                            "save for one name... """ + Fore.YELLOW + player.username + "\n\n")
     sleep(2)
-    print(Fore.BLUE + "[[END OF THE GAME]]")
+    print(Fore.BLUE + Style.BRIGHT +"[[END OF THE GAME]]")
+    sleep(180)
     exit()
