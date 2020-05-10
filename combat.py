@@ -53,7 +53,7 @@ def player_attack(player):
     player_action = ''
     while player_action not in player.attacks:
         print(Fore.WHITE + 'Select your action: ', ', '.join(player.attacks))
-        player_action = input(Fore.WHITE + "> ").lower()
+        player_action = input(">> ").lower()
 
         if player_action not in player.attacks:
             print("Please select an action available to you!")
