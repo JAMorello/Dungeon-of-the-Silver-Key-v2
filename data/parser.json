@@ -2,7 +2,7 @@
   "ADJECTIVES": [
     "cursed",
     "ancient",
-    "ornate"
+    "ornated"
   ],
   "COMBINE": {
     "use": {
@@ -58,7 +58,8 @@
       "observe",
       "examine",
       "inspect",
-      "watch"
+      "watch",
+      "view"
     ],
     "take": [
       "take",

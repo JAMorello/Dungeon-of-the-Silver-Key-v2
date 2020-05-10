@@ -4,7 +4,7 @@
             "id":1,
             "str_id":"room_one"
         },
-        "description":"Blast marks and dark stains litter the walls of this room. In the center lies a robed skeleton grasping a blue potion",
+        "description":"Blast marks and dark stains litter the walls of this room.\nIn the center lies a robed skeleton grasping a blue potion",
         "cleared":false,
         "directions":{
             "string":"There are doors to the south and east",
@@ -88,7 +88,7 @@
             }
         },
         "enemy":{
-            "type":"",
+            "name":"",
             "id":"",
             "alive":false
         },
