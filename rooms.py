@@ -35,7 +35,14 @@ def trigger_room(player):
 
         room = Room(rooms[player.location])
         room_script(player, room)
-        GAME_MAP[(room.number['id'] % 5) - 1][room.number['id'] // 5] = str(room.number['id'])  # Update the game map
+
+        # Update the game map
+        if room.number['id'] % 5 == 0:
+            num = 1
+        else:
+            num = 0
+        GAME_MAP[(room.number['id'] % 5) - 1][(room.number['id'] // 5) - num] = str(room.number['id'])
+
         perform_action(player, room)
         if "Silver Key" in INVENTORY.backpack:
             room_twentysix_script(player)
