@@ -5,7 +5,7 @@
 > and from what I know of Carter I think he has merely found a way to traverse these mazes.”*
 > **"The Silver Key" of H.P. Lovecraft**
 
-This is a project based and inspired in the original code of @Mili-NT and my reworking of that code. I intend to make a
+This is a project based and inspired in the original code of [@Mili-NT](https://github.com/Mili-NT/Dungeon-Of-The-Silver-Key) and my reworking of that code. I intend to make a
 version 2 of that game, but as there are intended a lot of changes, possibly the result is an entire new game.
 This is an exercise in Object Oriented Programming. Also, in "Research on Interactive Fiction.txt" you can see some notes
 and links of my research on IF for this project (for now, there is not a lot of that implemented, hopefully in the future
