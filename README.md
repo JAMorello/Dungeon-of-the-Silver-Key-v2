@@ -13,12 +13,13 @@ I´ll do it!)
 
 ### How to run the game:
 
-Depending on what stage of development is, perhaps you can´t play the game with the latest addition as there is work to
- be done and some modifications are continuously made. You can download the latest available exe or the files 
- (the newest from the 'master-v2' branch or the base game from "modified-old-code" branch, or even the old version in 
- 'old-game-code') to run in your local Python environment. If you are going to do the latter, don´t forget to install 
- the requirements.txt! You need the [colorama](https://pypi.org/project/colorama/), [tabulate](https://pypi.org/project/tabulate/), and 
-[pyfliget](https://github.com/pwaller/pyfiglet) modules in your virtual environment to run the game.  
+Depending on what stage of development is, perhaps you can´t play the game with the latest addition as there is work to 
+be done and some modifications are continuously made. You can download the files from 'master-v2' branch and play with 
+the latest available executable (make sure it is in same directory as the "data" folder) or use all the files 
+(the newest from the 'master-v2' branch or the base game from "modified-old-code" branch, or even the old version of 
+@Mili-NT in 'old-game-code') to run the game in your local Python environment. If you are going to do the latter, don´t
+forget to install the requirements.txt! You need the [colorama](https://pypi.org/project/colorama/), [tabulate](https://pypi.org/project/tabulate/)
+, and [pyfliget](https://github.com/pwaller/pyfiglet) modules in your virtual environment to run the game.  
 
 
 ### How to play:
