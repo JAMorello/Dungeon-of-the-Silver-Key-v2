@@ -51,8 +51,16 @@ def enemy_attack(player, enemy):
 
 def player_attack(player):
     player_action = ''
+
+    # List of available player physical attacks and spells
+    move_list = list()
+    for move in player.attacks:
+        print(player.attacks[move]['learned'])
+        if player.attacks[move]['learned']:
+            move_list.append(move)
+
     while player_action not in player.attacks:
-        print(Fore.WHITE + 'Select your action: ', ', '.join(player.attacks))
+        print('Select your action: ', ', '.join(move_list))
         player_action = input(">> ").lower()
 
         if player_action not in player.attacks:
@@ -64,13 +72,13 @@ def player_attack(player):
     elif player_action == "slash":
         player_damage = slash(player)
     elif player_action == "heal":
-        heal(player, spell="heal", mana=-10)
+        heal(player, spell="heal")
     elif player_action == "greater heal":
-        heal(player, spell="greater heal", mana=-30)
+        heal(player, spell="greater heal")
     elif player_action == "pure of mind":
         pure_of_mind(player)
     elif player_action == "void flame":
-        player_damage = void_flame(player, mana=-30)
+        player_damage = void_flame(player)
     elif player_action == "call of madness":
         call_of_madness(player)
     return player_damage
@@ -81,9 +89,9 @@ def establish_damage(damage, attacker, defender):
 
     # Score
     if type(attacker) is Player:
-        change_score(attacker, damage, damage_done=True)
+        attacker.change_score(damage, damage_done=True)
     if type(defender) is Player:
-        change_score(defender, damage, damage_taken=True)
+        defender.change_score(damage, damage_taken=True)
 
 
 def check_health(player, enemy, show=True):
@@ -108,104 +116,69 @@ def check_health(player, enemy, show=True):
 
 
 def thrust(player):
-    player_damage = randint(*player.attacks['thrust'])
-    print(Fore.GREEN + "You deftly weave between the enemy's attacks, giving your sword a powerful forward thrust, "
-                       "dealing", str(player_damage), "damage.")
+    move = player.attacks["thrust"]
+    player_damage = randint(*move['thrust'])
+    print(Fore.GREEN + choice(move["text"]) + ", dealing", str(player_damage), "damage.")
     return player_damage
 
 
 def slash(player):
-    player_damage = randint(*player.attacks['slash'])
-    print(Fore.GREEN + "With a prayer, you swing your sword in a recklessly wide arc, dealing", str(player_damage),
-          "damage.")
+    move = player.attacks["slash"]
+    player_damage = randint(*move['points'])
+    print(Fore.GREEN + choice(move["text"]) + ", dealing", str(player_damage), "damage.")
     return player_damage
 
 
-def void_flame(player, mana):
+def void_flame(player):
+    move = player.attack["void flame"]
     player_damage = 0
-    if player.mana < mana:
+    if player.mana < move["mana cost"]:
         print(Fore.RED + "You don't have enough mana!")
     else:
-        player_damage = randint(*player.attacks["void flame"])
-        mana_fluctuation(player, -30)
-        print(Fore.GREEN + "You lift a hand and chant the spell. A torrent of invisible flame pours forth from the "
-                           "Abyss, dealing ", str(player_damage), " damage.")
+        player_damage = randint(*move["points"])
+        player.mana = -move["mana cost"]
+        print(Fore.GREEN + choice(move["text"]), str(player_damage), " damage.")
     return player_damage
 
 
 def call_of_madness(player):
-    if player.sanity < 35:
+    move = player.attacks["call of madness"]
+    if player.sanity < move["sanity cost"]:
         gamefunctions.game_over(player, sanity_drain=True)
-    energy = randint(*player.attacks['call of madness'])
-    print(Fore.GREEN + """Cosmic winds cackle about you. You feel arcane power course through you. You feel... 
-    unstable.""")
-    mana_fluctuation(player, energy)
-    sanity_fluctuation(player, -energy)
+    amount = randint(*move['points'])
+    print(Fore.GREEN + choice(move["text"]))
+    player.mana = amount
+    sanity_fluctuation(player, -amount)
 
 
 def pure_of_mind(player):
-    if player.mana < 20:
+    move = player.attacks["pure of mind"]
+    if player.mana < move["mana cost"]:
         print(Fore.RED + "You don't have enough mana!")
     else:
-        mana_fluctuation(player, -20)
-        print(
-            Fore.GREEN + """You close your eyes and chant the incantation, for a brief second you can 
-                feel a ghostly hand upon your shoulder, offering its support. Your mind is clear and you 
-                can feel your sanity returning.""")
-        sanity_recovered = randint(*player.attacks['pure of mind'])
+        player.mana = -move["mana cost"]
+        print(Fore.GREEN + choice(move["text"]))
+        sanity_recovered = randint(*move["points"])
         sanity_fluctuation(player, sanity_recovered)
 
 
-def heal(player, spell, mana):
-    if player.mana < -mana:
+def heal(player, spell):
+    move = player.attacks[spell]
+    if player.mana < -move["mana cost"]:
         print(Fore.RED + "You have no mana remaining!")
     else:
-        mana_fluctuation(player, mana)
+        player.mana = move["mana cost"]
 
-        healing = 0
-        if spell == "heal":
-            healing = randint(*player.attacks["heal"])
-
-            print(Fore.GREEN + "A warm light encompasses you and vigor flows back into your damaged limbs. You are "
-                               "healed for ", str(healing), " health.")
-        if spell == "greater heal":
-            healing = randint(*player.attacks["greater heal"])
-            print(Fore.GREEN + "A ray of divine light falls upon you, breathing life into your damaged form... you are "
-                               "healed for """ + str(healing))
+        healing = randint(*move["points"])
+        print(Fore.GREEN + choice(move["text"]))
 
         player.health += healing
-        if player.health > player.base_stats['max_health']:
-            player.health = player.base_stats['max_health']
-        print(Fore.GREEN + "Your health is now " + str(player.health))
 
-        change_score(player, points=healing, amount_healed=True, )
+        player.change_score(points=healing, amount_healed=True)
 
 
 def sanity_fluctuation(player, amount):
-    player.sanity += amount
-    if player.sanity > player.base_stats['max_sanity']:
-        player.sanity = player.base_stats['max_sanity']
-    if player.sanity < 0:
+    player.sanity = (amount, True)
+    if player.sanity == 0:
         gamefunctions.game_over(player, sanity_drain=True)
-    print(Fore.GREEN + "Your sanity is " + str(player.sanity) + Fore.WHITE)
-    change_score(player, points=-amount, sanity_lost=True)
-
-
-def mana_fluctuation(player, amount):
-    player.mana += amount
-    if player.mana < 0:
-        player.mana = 0
-    if player.mana > player.base_stats['max_mana']:
-        player.mana = player.base_stats['max_mana']
-    print("You have " + str(player.mana) + " mana remaining.")
-
-
-def change_score(player, points=0, damage_done=False, damage_taken=False, amount_healed=False, sanity_lost=False):
-    if damage_done:
-        player.damage_done += points
-    if damage_taken:
-        player.damage_taken += points
-    if amount_healed:
-        player.amount_healed += points
-    if sanity_lost:
-        player.sanity_lost += points
+    player.change_score(points=-amount, sanity_lost=True)
