@@ -4,31 +4,27 @@
         "description":"a large, white book bound with gold thread. It must have been a holy book at some point.",
         "found_object":"You see a skeleton grasping an ornated tome, previously obscured by the mist.",
         "grab_object":"The tome contains a powerful healing spell, capable of curing even the most gruesome wounds.",
-        "spell":"greater heal",
-        "damage":[50,60]
+        "spell":"Greater Heal"
     },
     "cursed_tome":{
         "name":"Cursed Tome",
         "description":"a book bound in a most unsettling familiar substance.",
         "found_object":"You approach the pedestal and inspect the book.",
         "grab_object":"The tome contains a dark spell that can regenerate the caster's mana... at the cost of his sanity.",
-        "spell":"call of madness",
-        "damage":[30,35]
+        "spell":"Call of Madness"
     },
     "ancient_scroll":{
         "name":"Ancient Scroll",
         "description":"an eon old scroll of bloodied and torn parchment.\nIt appears to have a spell inscribed upon it.",
         "found_object":"You approach the pedestal that holds the scroll.",
         "grab_object":"Madness has claimed many in this dark place, yet before it took it's toll, a long dead sorcerer\nhad penned his final spell- a hopeful chant to push back the darkness of the dungeon.",
-        "spell":"pure of mind",
-        "damage":[20,30]
+        "spell":"Pure of Mind"
     },
     "ancient_spellbook":{
         "name":"Ancient Spellbook",
         "description":"a leather-bound spellbook containing arcane symbols and instructions",
         "found_object":"You found that the skeleton is grasping a spellbook.",
         "grab_object":"You pick up the spellbook and read it's contents.\nIt is a spellbook that teaches the user to summon forth a powerful torrent of invisible flames\nfrom the abyss, searing the target's soul. ",
-        "spell":"void flame",
-        "damage":[35,50]
+        "spell":"Void Flame"
     }
 }
