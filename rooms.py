@@ -113,7 +113,7 @@ def room_script(player, room):
     if not room.cleared:
         # Entering room
         room.location_check()
-        player.gain_sanity()
+        player.sanity = (5, False)  # Recovering sanity
 
         # Combat
         room.create_and_combat_enemy(player)
