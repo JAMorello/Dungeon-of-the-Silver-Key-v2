@@ -42,11 +42,13 @@ class Player:
 
     @health.setter
     def health(self, val):
-        self.__health += val
-        if self.__health > self.max_stats['max_health']:
-            self.__health = self.max_stats['max_health']
-        print(Fore.GREEN + f"Your gained {val} points of health...")
-        print(Fore.GREEN + f"You have {self.__health} points of health." + Fore.WHITE)
+        if val != 0:
+            self.__health += val
+            if self.__health > self.max_stats['max_health']:
+                self.__health = self.max_stats['max_health']
+            if val > 0:
+                print(Fore.GREEN + f"Your gained {val} points of health...")
+                print(Fore.GREEN + f"You have {self.__health} points of health." + Fore.WHITE)
 
     @property
     def mana(self):
@@ -54,12 +56,15 @@ class Player:
 
     @mana.setter
     def mana(self, val):
-        self.__mana += val
-        if self.__mana < 0:
-            self.__mana = 0
-        if self.__mana > self.max_stats['max_mana']:
-            self.__mana = self.max_stats['max_mana']
-        print(Fore.BLUE + "You have " + str(self.__mana) + " mana remaining." + Fore.WHITE)
+        if val != 0:
+            self.__mana += val
+            if self.__mana < 0:
+                self.__mana = 0
+            if self.__mana > self.max_stats['max_mana']:
+                self.__mana = self.max_stats['max_mana']
+            if val > 0:
+                print(Fore.GREEN + f"Your gained {val} points of mana...")
+            print(Fore.BLUE + "You have " + str(self.__mana) + " mana remaining." + Fore.WHITE)
 
     @property
     def sanity(self):
@@ -67,7 +72,8 @@ class Player:
 
     @sanity.setter
     def sanity(self, tup):
-        val, spell = tup  # Tuple contains a numeric value and a boolean
+        # TODO: Work on sanity that triggers on entering room (initial and exploit)
+        (val, spell) = tup  # Tuple contains a numeric value and a boolean
         self.__sanity += val
         if self.__sanity > self.max_stats['max_sanity']:
             self.__sanity = self.max_stats['max_sanity']
@@ -82,6 +88,7 @@ class Player:
         for stat in self.max_stats:
             stat += amount
         # Boost current stats
+        # TODO: work on boost: TypeError: can only concatenate str (not "int") to str
         self.__health += amount
         self.__mana += amount
         self.__sanity += amount
