@@ -23,7 +23,7 @@ def start_combat(player, enemy):
             if participant is enemy:
                 damage = enemy_attack(player, participant)
                 deal_damage(damage, attacker=enemy, defender=player)
-            if not damage == 0:
+            if damage != 0:
                 combat_ongoing = check_health(player, enemy)
             sleep(1.5)
 
@@ -38,7 +38,7 @@ def check_speed(player, enemy):
 def enemy_attack(player, enemy):
     move, enemy_damage_range = choice(list(enemy.attacks.items()))
     if move[:3] == "[S]":  # if the attack affects the sanity
-        print(Fore.RED + enemy.sanity_move + " you feel your sanity slipping.")  # TODO: ALSO "your sanity is under assault."
+        print(Fore.RED + enemy.sanity_move + " you feel your sanity slipping.")
         sanity_fluctuation(player, -enemy_damage_range)
         enemy_damage = 0
     else:  # If it is a physical attack
@@ -70,10 +70,10 @@ def player_attack(player):
     player_damage = 0  # Initialize damage. Default 0 for spells that doesn´t deal damage
 
     amount = randint(*move["points"])  # The kind of "amount" depends on the move and type
-    print(Fore.GREEN + choice(move["text"]))  # Prints a random text of the move
 
     if move["physical"]:
         player_damage = amount
+        print(Fore.GREEN + choice(move["text"]))  # Prints a random text of the move
         print("You deal", str(player_damage), "damage.")
 
     if move["spell"]:
@@ -84,10 +84,11 @@ def player_attack(player):
         else:
 
             player.mana = -move["mana cost"]  # spending mana to cast spell
+            print(Fore.GREEN + choice(move["text"]))  # Prints a random text of the move
 
             if move["type"] == "offensive":
                 player_damage = amount
-                print("You deal", str(player_damage), "damage.")
+                print(Fore.GREEN + "You deal", str(player_damage), "damage.")
 
             if move["type"] == "mana":
                 player.mana = amount  # mana recovered
@@ -137,4 +138,3 @@ def sanity_fluctuation(player, amount):
     player.sanity = (amount, True)
     if player.sanity == 0:
         gamefunctions.game_over(player, sanity_drain=True)
-    player.change_score(points=-amount, sanity_lost=True)
