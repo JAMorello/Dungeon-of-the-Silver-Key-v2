@@ -105,15 +105,11 @@ class Room:
             rooms[self.number['str_id']]['enemy']['alive'] = False
 
 
-# TODO: Function relative to rooms:
-    # get_near_room_description() --> In current room (more complex dict) or from dumped .json (only one line, but how?)
-
-
 def room_script(player, room):
     if not room.cleared:
         # Entering room
         room.location_check()
-        player.gain_sanity()
+        player.sanity = (5, False)  # Recovering sanity
 
         # Combat
         room.create_and_combat_enemy(player)

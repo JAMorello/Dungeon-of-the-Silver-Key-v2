@@ -3,7 +3,6 @@ from colorama import Fore
 from tabulate import tabulate
 import items
 from items import Book, Talisman
-from combat import mana_fluctuation
 from time import sleep
 
 
@@ -25,37 +24,43 @@ class Inventory:
     def use_item(self, item, player):
         if item == "health":
             self.drop_item("Health Potion")
-            player.gain_health(items.potion['health_potion']['healing'], player)
+            player.health = items.potion['health_potion']['healing']
         if item == "mana":
             self.drop_item("Mana Potion")
-            mana_fluctuation(player, items.potion['mana_potion']['mana_recover'])
+            player.mana = items.potion['mana_potion']['mana_recover']
 
     def show_inventory(self):
         show_inventory = [['Name', 'Quantity']]
-        for item in self.backpack:
-            show_inventory.append([item, self.backpack[item][1]])
-        print(tabulate(show_inventory, tablefmt="fancy_grid"))
+        if self.backpack:
+            for item in self.backpack:
+                show_inventory.append([item, self.backpack[item][1]])
+            print(tabulate(show_inventory, tablefmt="fancy_grid"))
+            return True
+        else:
+            print("You don´t have any items!")
+            return False
 
     def inspect_inventory(self):
-        self.show_inventory()
-        more_actions = ''
-        response = True
-        while not more_actions:
-            item = input("What item do you want to inspect? (Or else, [Q]uit) ")
-            if item in INVENTORY.backpack:
-                self.backpack[item][0].inspect_item()
-            else:
-                response = False
-
-            if not response:
-                if item.lower() == "q" or item.lower() == "quit":
-                    more_actions = "quit"
+        any_item = self.show_inventory()
+        if any_item:
+            more_actions = ''
+            response = True
+            while not more_actions:
+                item = input("What item do you want to inspect? (Or else, [Q]uit) ")
+                if item in INVENTORY.backpack:
+                    self.backpack[item][0].inspect_item()
                 else:
-                    print("Else you don´t have that object or you didn´t write its name correctly.")
-            else:
-                more_actions = input("Anything else? [Yes/No]: ").lower()
-                if more_actions == "yes" or more_actions == "y":
-                    more_actions = ""
+                    response = False
+
+                if not response:
+                    if item.lower() == "q" or item.lower() == "quit":
+                        more_actions = "quit"
+                    else:
+                        print("Else you don´t have that object or you didn´t write its name correctly.")
+                else:
+                    more_actions = input("Anything else? [Yes/No]: ").lower()
+                    if more_actions == "yes" or more_actions == "y":
+                        more_actions = ""
 
 
 def pickup_item(player, item):
@@ -69,7 +74,7 @@ def pickup_item(player, item):
             INVENTORY.add_item(item)
             sleep(1)
             if type(item) is Book:
-                player.attacks[item.spell] = item.damage
+                player.attacks[item.spell.lower()]["learned"] = True
                 print(Fore.GREEN + f"You learn {item.spell}!" + Fore.WHITE)
                 sleep(1)
             if type(item) is Talisman:
@@ -143,9 +148,3 @@ def looting_enemy(enemy):
 
 
 INVENTORY = Inventory()
-
-# TODO: Functions relative to objects:
-# look_at()
-# pick_up() --> a "movable or not" is missing; also, if person or not;
-# if there isn´t any, "There isn´t any %"; success message
-# drop() --> implement; nothing to drop, "You don´t have any %"; success message

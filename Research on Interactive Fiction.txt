@@ -141,6 +141,9 @@ https://www.youtube.com/watch?v=bx5ZLGBZAWs
 Game development with Twine 2 and Harlowe 2
 https://www.youtube.com/watch?v=YDUU5yZq4og
 
+How should I parse user input in a text adventure game?
+https://gamedev.stackexchange.com/questions/27004/how-should-i-parse-user-input-in-a-text-adventure-game
+
 =====================================================
 
 #### HARVESTING INTERACTIVE FICTION

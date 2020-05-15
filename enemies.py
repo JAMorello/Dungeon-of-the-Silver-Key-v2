@@ -15,9 +15,17 @@ class Enemy:
         self.sanity_move = enemy_dict['sanity move']
         self.special_move = enemy_dict['special move']
         self.speed = randint(*enemy_dict['speed'])
-        self.health = enemy_dict['health']
+        self.__health = enemy_dict['health']
         self.drop_chance = enemy_dict['drop chance']
         self.attacks = enemy_dict['attacks']
+
+    @property
+    def health(self):
+        return self.__health
+
+    @health.setter
+    def health(self, val):
+        self.__health += val
 
     def monster_appears(self, player):  # This method is used to announce the start of a non-boss fight
         print(self.adjective + self.name + " appears before you.\n" + self.description)

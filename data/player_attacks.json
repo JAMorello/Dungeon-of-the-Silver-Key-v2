@@ -1,0 +1,84 @@
+{
+        "thrust": {
+            "physical": true,
+            "spell": false,
+            "learned": true,
+            "points": [25, 30],
+            "text": [
+                "You deftly weave between the enemy's attacks, giving your sword a powerful forward thrust."
+            ]
+        },
+        "slash": {
+            "physical": true,
+            "spell": false,
+            "learned": true,
+            "points": [10, 65],
+            "text": [
+                "With a prayer, you swing your sword in a recklessly wide arc."
+            ]
+        },
+        "heal": {
+            "physical": false,
+            "spell": true,
+            "type": "health",
+            "learned": true,
+            "points": [25, 40],
+            "mana cost": 10,
+            "sanity cost": 0,
+            "text": [
+                "A warm light encompasses you and vigor flows back into your damaged limbs."
+            ]
+        },
+        "great heal": {
+            "physical": false,
+            "spell": true,
+            "type": "health",
+            "learned": false,
+            "points": [50, 60],
+            "mana cost": 30,
+            "sanity cost": 0,
+            "text": [
+                "A ray of divine light falls upon you, breathing life into your damaged form..."
+                    ]
+        },
+        "pure of mind": {
+            "physical": false,
+            "spell": true,
+            "type": "sanity",
+            "learned": false,
+            "points": [20, 30],
+            "mana cost": 20,
+            "sanity cost": 0,
+            "text": [
+                "You close your eyes and chant the incantation, for a brief second you can feel a ghostly hand upon\n",
+                "your shoulder, offering its support. Your mind is clear and you can feel your sanity returning."
+            ]
+        },
+        "call of madness": {
+            "physical": false,
+            "spell": true,
+            "type": "mana",
+            "learned": false,
+            "points": [30, 35],
+            "mana cost": 0,
+            "sanity cost": 35,
+            "text": [
+                "Cosmic winds cackle about you. You feel arcane power course through you. You feel...unstable."
+            ]
+        },
+        "void flame": {
+            "physical": false,
+            "spell": true,
+            "type": "offensive",
+            "learned": false,
+            "points": [
+                30,
+                50
+            ],
+            "mana cost": 30,
+            "sanity cost": 0,
+            "text": [
+                "You lift a hand and chant the spell. A torrent of invisible flame pours forth from the Abyss."
+            ]
+        }
+}

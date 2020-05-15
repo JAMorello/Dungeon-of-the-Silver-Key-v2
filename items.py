@@ -24,7 +24,6 @@ class Book(Item):
     def __init__(self, item_properties):
         super().__init__(item_properties)
         self.spell = item_properties['spell']
-        self.damage = item_properties['damage']
 
 
 class Potion(Item):

@@ -170,24 +170,18 @@ def perform_action(player, room):
                     done = True
 
 
-# TODO: Functions relative to game in general:
-    # do_look(): in general ("look"); to object, to room, to direction (cleaner())
-    # do_examine(): ("examine") "Examine what?"; with obj, do_look(). ¿What if more info?
-    # inventory: do not show if there isnt any item
-
-
 def calculate_score(player):
-    positives = player.damage_done + player.amount_healed
-    negatives = player.damage_taken + player.sanity_lost
+    positives = player.score['damage_done'] + player.score['amount_healed']
+    negatives = player.score['damage_taken'] + player.score['sanity_lost']
     score = positives - negatives
 
-    print("\n\n" + Fore.YELLOW + "You did " + str(player.damage_done) + " points of damage!")
+    print("\n\n" + Fore.YELLOW + "You did " + str(player.score['damage_done']) + " points of damage!")
     sleep(0.25)
-    print(Fore.YELLOW + "You healed for " + str(player.amount_healed) + " points!")
+    print(Fore.YELLOW + "You healed for " + str(player.score['amount_healed']) + " points!")
     sleep(0.25)
-    print(Fore.RED + "You took " + str(player.damage_taken) + " points of damage!")
+    print(Fore.RED + "You took " + str(player.score['damage_taken']) + " points of damage!")
     sleep(0.25)
-    print(Fore.RED + "You lost " + str(player.sanity_lost) + " points of sanity!")
+    print(Fore.RED + "You lost " + str(player.score['sanity_lost']) + " points of sanity!")
     sleep(0.25)
     print(Fore.YELLOW + "Your score was: " + str(score) + " points.\n")
     sleep(1)
@@ -248,6 +242,6 @@ def victory(player):
                            "The walls, once filled with the names of those who challenged the dungeon, are now clear,\n"
                            "save for one name... """ + Fore.YELLOW + player.username + "\n\n")
     sleep(2)
-    print(Fore.BLUE + Style.BRIGHT +"[[END OF THE GAME]]")
+    print(Fore.BLUE + Style.BRIGHT + "[[END OF THE GAME]]")
     sleep(180)
     exit()
