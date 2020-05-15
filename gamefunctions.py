@@ -242,6 +242,6 @@ def victory(player):
                            "The walls, once filled with the names of those who challenged the dungeon, are now clear,\n"
                            "save for one name... """ + Fore.YELLOW + player.username + "\n\n")
     sleep(2)
-    print(Fore.BLUE + Style.BRIGHT +"[[END OF THE GAME]]")
+    print(Fore.BLUE + Style.BRIGHT + "[[END OF THE GAME]]")
     sleep(180)
     exit()
