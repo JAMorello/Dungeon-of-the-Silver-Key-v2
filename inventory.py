@@ -148,9 +148,3 @@ def looting_enemy(enemy):
 
 
 INVENTORY = Inventory()
-
-# TODO: Functions relative to objects:
-# look_at()
-# pick_up() --> a "movable or not" is missing; also, if person or not;
-# if there isn´t any, "There isn´t any %"; success message
-# drop() --> implement; nothing to drop, "You don´t have any %"; success message
