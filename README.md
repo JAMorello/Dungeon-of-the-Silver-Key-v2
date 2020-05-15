@@ -54,6 +54,7 @@ The game is not exhaustive or comprehensive, so there might be some misunderstan
     * Parser:
         - [x] Make a rudimentary parser
         - [ ] Work a bit in the parser (look at object/monster/near room, drop object, see user stats, etc)
+        - [ ] Add use of some spells outside of combat
         - [ ] Make the parser a bit more sofisticaded (implement prepositions)
         - [ ] ???
     
@@ -61,7 +62,9 @@ The game is not exhaustive or comprehensive, so there might be some misunderstan
         - [x] Add a sleep() between some functions so one is not flooded with text
         - [x] A "grab the left behind item in the room" function is missing
         - [x] The "view map" should show only the visited rooms
-        - [ ] A "drop item" is missing
+        - [ ] Implement off combat use of spells
+        - [ ] do_look(): in general ("look"); to object, to room, to direction (cleaner())
+        - [ ] do_examine(): ("examine") "Examine what?"; with obj, do_look(). ¿What if more info?
         
     * Map
         - [ ] Review layout of the rooms
@@ -73,6 +76,7 @@ The game is not exhaustive or comprehensive, so there might be some misunderstan
     * Rooms
         - [x] Insert the data in a json file
         - [x] Reduce all the room scripts to only one
+        - [ ] get_near_room_description() --> In current room (more complex dict) or from dumped .json (only one line, but how?)
         - [ ] Add more data in the dictionaries (what data? near_room_description, i.e??)
         
     * Player
@@ -94,8 +98,10 @@ The game is not exhaustive or comprehensive, so there might be some misunderstan
         
     * Inventory
         - [x] Do not show if it is empty
-        - [ ] Check what could possibly be changed
-        
+        - [ ] look_at()
+        - [ ] pick_up() --> a "movable or not" is missing; also, if person or not; if there isn´t any, "There isn´t any %"; success message
+        - drop() --> implement; nothing to drop, "You don´t have any %"; success message
+
     * Items
         - [x] Insert the data in a json file
         - [ ] Add new items
