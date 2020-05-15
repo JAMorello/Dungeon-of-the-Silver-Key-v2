@@ -50,6 +50,9 @@ class Player:
                 print(Fore.GREEN + f"Your gained {val} points of health...")
                 print(Fore.GREEN + f"You have {self.__health} points of health." + Fore.WHITE)
 
+        if val > 0:
+            self.change_score(val, amount_healed=True)
+
     @property
     def mana(self):
         return self.__mana
@@ -72,21 +75,26 @@ class Player:
 
     @sanity.setter
     def sanity(self, tup):
-        # TODO: Work on sanity that triggers on entering room (initial and exploit)
         (val, spell) = tup  # Tuple contains a numeric value and a boolean
-        self.__sanity += val
+        if not spell:  # So, is a room trigger
+            if self.__sanity != self.max_stats['max_sanity']:
+                self.__sanity += val
+                print(Fore.GREEN + "Somewhat your mind feels a little more stable than before..." + Fore.WHITE)
+        else:
+            self.__sanity += val
+            print(Fore.GREEN + "Your sanity is " + str(self.__sanity) + Fore.WHITE)
+
         if self.__sanity > self.max_stats['max_sanity']:
             self.__sanity = self.max_stats['max_sanity']
-        if not spell:
-            print(Fore.GREEN + "Somewhat your mind feels a little more stable than before..." + Fore.WHITE)
-        if spell:
-            print(Fore.GREEN + "Your sanity is " + str(self.__sanity) + Fore.WHITE)
+
+        if val < 0:
+            self.change_score(-val, sanity_lost=True)
         sleep(1)
 
     def boost_stats(self, amount):
         # Boost max stats
         for stat in self.max_stats:
-            stat += amount
+            self.max_stats[stat] += amount
         # Boost current stats
         # TODO: work on boost: TypeError: can only concatenate str (not "int") to str
         self.__health += amount
