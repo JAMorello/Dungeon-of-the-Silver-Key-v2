@@ -11,6 +11,13 @@ possibly the result is an entire new game. This is an exercise in Object Oriente
 "Research on Interactive Fiction.txt" you can see some notes and links of my research on IF for this project 
 (for now, there is not a lot of that implemented, hopefully in the future I´ll do it!).
 
+Table of Contents
+=================
+
+  * [How to run the game](#how-to-run-the-game)
+  * [How to play](#how-to-play)
+  * [There is still work to be done](#there-is-still-work-to-be-done)
+
 ### How to run the game:
 
 Depending on what stage of development is, perhaps you can´t play the game with the latest addition as there is work to 
