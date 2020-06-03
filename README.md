@@ -1,6 +1,8 @@
 # Dungeon Of The Silver Key
 ## A basic Lovecraft inspired text-based dungeon crawler written in Python
 
+![Nyarlathothep by jason engle](/data/banner002.jpg)
+
 > *“There are twists of time and space, of vision and reality, which only a dreamer can divine; 
 > and from what I know of Carter I think he has merely found a way to traverse these mazes.”*
 > **"The Silver Key" of H.P. Lovecraft**
